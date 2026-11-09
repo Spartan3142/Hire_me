@@ -120,7 +120,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const orderServiceBtn = document.querySelector('#orderServiceBtn');
     if (orderServiceBtn) {
         orderServiceBtn.addEventListener('click', () => {
-            alert(`Ajoyib tanlov! "${currentSelectedService}" xizmati bo'yicha tez orada siz bilan bog'lanamiz.`);
+            const contactSection = document.querySelector('#contact');
+            const subjectInput = document.querySelector('#userSubject');
+            if (subjectInput) {
+                subjectInput.value = `Xizmat: ${currentSelectedService}`;
+            }
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
         });
     }
 
@@ -133,6 +140,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Loyiha "Batafsil ko'rish" tugmalari
+    const projectLinkBtns = document.querySelectorAll('.project-link-btn');
+    projectLinkBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const projName = btn.getAttribute('data-project-name') || 'Loyiha';
+            const contactSection = document.querySelector('#contact');
+            const subjectInput = document.querySelector('#userSubject');
+            if (subjectInput) {
+                subjectInput.value = `Loyiha: ${projName}`;
+            }
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    const downloadCvBtn = document.querySelector('#downloadCvBtn');
+    if (downloadCvBtn) {
+        downloadCvBtn.addEventListener('click', () => {
+            alert('Diyorbek Kimsanov - UI/UX & Frontend CV (Rezyume) tez orada taqdim etiladi.');
+        });
+    }
 
     // ============================================
     // 6. ALOQA FORMASI VA CHIROYLI MODAL OYNA (Success Modal)
