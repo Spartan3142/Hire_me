@@ -1,0 +1,57 @@
+/* ============================================
+   VARIABLES.CSS — CSS o'zgaruvchilar (Custom Properties)
+   Dark Luxury / Minimalist Orange & Black tema
+   ============================================ */
+
+:root {
+    /* === RANGLAR === */
+    --color-bg-dark: #121212;
+    --color-surface: #1e1e1e;
+    --color-surface-card: #252525;
+    
+    /* Aktsent (To'q sariq - Orange) */
+    --color-primary: #ff6b00;
+    --color-primary-light: #ff8533;
+    --color-primary-dark: #e05e00;
+    --color-primary-glow: rgba(255, 107, 0, 0.25);
+
+    /* Matn ranglari */
+    --color-text: #ffffff;
+    --color-text-muted: #9e9e9e;
+    --color-text-dim: #666666;
+
+    /* Chegaralar va chiziqlar */
+    --color-border: #2c2c2c;
+    --color-border-focus: #ff6b00;
+
+    /* === SHRIFTLAR === */
+    --font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+
+    /* Shrift o'lchamlari */
+    --font-size-xs: 0.75rem;     /* 12px */
+    --font-size-sm: 0.875rem;    /* 14px */
+    --font-size-base: 1rem;      /* 16px */
+    --font-size-lg: 1.125rem;    /* 18px */
+    --font-size-xl: 1.35rem;     /* ~22px */
+    --font-size-2xl: 1.75rem;    /* 28px */
+    --font-size-3xl: 2.5rem;     /* 40px */
+    --font-size-4xl: 3.5rem;     /* 56px */
+
+    /* Bo'shliqlar */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+
+    /* Chegara radiusi */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 20px;
+    --radius-full: 9999px;
+
+    /* O'tishlar */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+}

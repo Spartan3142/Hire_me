@@ -1,0 +1,90 @@
+/* ============================================
+   RESPONSIVE.CSS — Media query / responsiv stillar
+   Mobile-first yondashuv
+   ============================================ */
+
+/* ---- Kichik ekranlar (Mobile) — default holat ---- */
+
+/* Grid responsivlik */
+.grid--2,
+.grid--3,
+.grid--4 {
+    grid-template-columns: 1fr;
+}
+
+/* Navbar mobil */
+.navbar {
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.navbar__links {
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+/* ---- Tablet (768px va undan katta) ---- */
+@media (min-width: 768px) {
+    .grid--2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid--3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid--4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .navbar {
+        flex-wrap: nowrap;
+    }
+
+    .navbar__links {
+        flex-wrap: nowrap;
+    }
+}
+
+/* ---- Desktop (1024px va undan katta) ---- */
+@media (min-width: 1024px) {
+    .grid--3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid--4 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ---- Katta ekranlar (1280px va undan katta) ---- */
+@media (min-width: 1280px) {
+    .grid--4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ---- Ko'rinishni yashirish/ko'rsatish ---- */
+.hide--mobile {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .hide--mobile {
+        display: block;
+    }
+
+    .hide--tablet {
+        display: none;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hide--tablet {
+        display: block;
+    }
+
+    .hide--desktop {
+        display: none;
+    }
+}

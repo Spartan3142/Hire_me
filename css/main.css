@@ -1,0 +1,16 @@
+/* ============================================
+   MAIN.CSS — Yagona CSS kirish nuqtasi
+   Barcha CSS fayllar shu yerda @import qilinadi.
+   HTMLga faqat shu fayl ulanadi.
+   ============================================ */
+
+@import url('./reset.css');
+@import url('./variables.css');
+@import url('./base.css');
+@import url('./layout.css');
+@import url('./components.css');
+@import url('./responsive.css');
+
+/* Sahifa-maxsus stillar */
+@import url('./portfolio.css');
+@import url('./services.css');

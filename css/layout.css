@@ -1,0 +1,110 @@
+/* ============================================
+   LAYOUT.CSS — Sahifa joylashuvi (Layout)
+   Container, grid, flexbox yordamchi klasslari
+   ============================================ */
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+}
+
+/* Sahifa tuzilishi */
+.page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.page__header {
+    flex-shrink: 0;
+}
+
+.page__main {
+    flex-grow: 1;
+}
+
+.page__footer {
+    flex-shrink: 0;
+}
+
+/* Flex yordamchi klasslari */
+.flex {
+    display: flex;
+}
+
+.flex--column {
+    flex-direction: column;
+}
+
+.flex--center {
+    align-items: center;
+    justify-content: center;
+}
+
+.flex--between {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex--wrap {
+    flex-wrap: wrap;
+}
+
+.flex--gap-sm {
+    gap: var(--spacing-sm);
+}
+
+.flex--gap-md {
+    gap: var(--spacing-md);
+}
+
+.flex--gap-lg {
+    gap: var(--spacing-lg);
+}
+
+/* Grid yordamchi klasslari */
+.grid {
+    display: grid;
+    gap: var(--spacing-md);
+}
+
+.grid--2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Section bo'shliqlari */
+.section {
+    padding-block: var(--spacing-3xl);
+}
+
+.section--sm {
+    padding-block: var(--spacing-xl);
+}
+
+.section--lg {
+    padding-block: var(--spacing-3xl);
+}
+
+/* Matn joylashuvi */
+.text--center {
+    text-align: center;
+}
+
+.text--left {
+    text-align: left;
+}
+
+.text--right {
+    text-align: right;
+}

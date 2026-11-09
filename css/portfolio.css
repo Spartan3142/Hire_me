@@ -1,0 +1,400 @@
+/* ============================================
+   PORTFOLIO.CSS — Dark & Orange Portfolio Stili
+   Dizayn asosida tayyorlangan (Dark theme hero)
+   ============================================ */
+
+/* Butun sahifa foni */
+body {
+    background-color: #0d0d0d;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 107, 0, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(255, 107, 0, 0.05) 0%, transparent 40%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.02) 25%, transparent 25%),
+        linear-gradient(225deg, rgba(255, 255, 255, 0.02) 25%, transparent 25%);
+    background-size: 100% 100%, 100% 100%, 60px 60px, 60px 60px;
+    color: var(--color-text);
+    font-family: var(--font-family);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+}
+
+/* Asosiy ramkali ilova oynasi */
+.app-frame {
+    width: 100%;
+    max-width: 1240px;
+    background-color: var(--color-bg-dark);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 100px rgba(255, 107, 0, 0.05);
+    overflow: hidden;
+    position: relative;
+    padding: var(--spacing-xl) var(--spacing-2xl);
+}
+
+/* Orqa fondagi to'q sariq yorug'lik (Glow effect) */
+.app-frame::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(255, 107, 0, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ============================================
+   NAVBAR (Yuqori Menyu)
+   ============================================ */
+.header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+    padding-bottom: var(--spacing-xl);
+}
+
+/* Logo */
+.logo {
+    font-size: var(--font-size-xl);
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: var(--color-primary);
+    text-shadow: 0 0 15px rgba(255, 107, 0, 0.4);
+    cursor: pointer;
+}
+
+/* Navigatsiya havolalari */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+}
+
+.nav-link {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+.nav-link:hover {
+    color: var(--color-text);
+}
+
+.nav-link.active {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* Navdagi Hire Me tugmasi */
+.btn-nav {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    padding: 0.6rem 1.6rem;
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn-nav:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 0, 0.35);
+}
+
+/* ============================================
+   HERO SECTION (Asosiy qism)
+   ============================================ */
+.hero {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    min-height: 520px;
+    gap: var(--spacing-xl);
+    position: relative;
+    z-index: 1;
+}
+
+/* Chap kontent */
+.hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero__greeting {
+    font-size: var(--font-size-base);
+    color: var(--color-text-muted);
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.5px;
+}
+
+.hero__name {
+    font-size: var(--font-size-xl);
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-sm);
+}
+
+.hero__title {
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 800;
+    color: var(--color-primary);
+    line-height: 1.15;
+    margin-bottom: var(--spacing-lg);
+    text-shadow: 0 4px 30px rgba(255, 107, 0, 0.25);
+}
+
+/* Ijtimoiy tarmoqlar piktogrammalari */
+.hero__socials {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.social-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    transition: all var(--transition-fast);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.social-btn svg {
+    width: 17px;
+    height: 17px;
+    fill: currentColor;
+}
+
+.social-btn:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    transform: translateY(-3px);
+    background: rgba(255, 107, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(255, 107, 0, 0.2);
+}
+
+/* Harakat tugmalari (Hire Me & Download CV) */
+.hero__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-primary);
+    transition: all var(--transition-fast);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    box-shadow: 0 6px 25px rgba(255, 107, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    padding: 0.75rem 1.8rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-fast);
+}
+
+.btn-outline:hover {
+    border-color: var(--color-text);
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+}
+
+/* Pastki Statistika Qutisi */
+.stats-card {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+    background: rgba(30, 30, 30, 0.75);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--radius-md);
+    width: fit-content;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-item:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding-right: var(--spacing-xl);
+}
+
+.stat-number {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.2;
+}
+
+.stat-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    font-weight: 400;
+    margin-top: 0.2rem;
+}
+
+/* ============================================
+   HERO AVATAR (O'ng tomon - Rasm)
+   ============================================ */
+.hero__visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 420px;
+    height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Rasm orqasidagi qora doira fon */
+.avatar-bg-circle {
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    border-radius: var(--radius-full);
+    background: radial-gradient(circle, #222222 0%, #151515 80%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+
+/* Rasmni doira shaklida qirqish */
+.avatar-image {
+    position: relative;
+    z-index: 2;
+    width: 380px;
+    height: 380px;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+    object-position: center 25%;
+    border: 3px solid rgba(255, 107, 0, 0.4);
+    box-shadow: 0 0 35px rgba(255, 107, 0, 0.25);
+    filter: contrast(108%) brightness(98%);
+    transition: filter var(--transition-normal), transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.avatar-image:hover {
+    filter: contrast(115%) brightness(105%);
+    transform: scale(1.03);
+    box-shadow: 0 0 45px rgba(255, 107, 0, 0.45);
+}
+
+/* ============================================
+   RESPONSIVLIK (Media Queries)
+   ============================================ */
+@media (max-width: 992px) {
+    .app-frame {
+        padding: var(--spacing-lg);
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: var(--spacing-2xl);
+    }
+
+    .hero__content {
+        align-items: center;
+    }
+
+    .hero__socials,
+    .hero__actions {
+        justify-content: center;
+    }
+
+    .stats-card {
+        margin-inline: auto;
+    }
+
+    .avatar-wrapper {
+        width: 320px;
+        height: 320px;
+    }
+
+    .avatar-bg-circle,
+    .avatar-image {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 640px) {
+    body {
+        padding: var(--spacing-sm);
+    }
+
+    .header-nav {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .nav-links {
+        gap: var(--spacing-md);
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero__actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero__actions button {
+        width: 100%;
+    }
+
+    .stats-card {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        width: 100%;
+    }
+
+    .stat-item:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-right: 0;
+        padding-bottom: var(--spacing-sm);
+        width: 100%;
+        text-align: center;
+    }
+}
