@@ -91,7 +91,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ============================================
-    // 4. BUYURTMA VA HAMKORLIK TUGMALARI
+    // 4. PORTFOLIO FILTRLASH (Projects Interactive Filter)
+    // ============================================
+    const pFilterButtons = document.querySelectorAll('.portfolio-filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    pFilterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            pFilterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filterValue = btn.getAttribute('data-pfilter');
+
+            projectCards.forEach(card => {
+                const category = card.getAttribute('data-pcategory');
+                if (filterValue === 'all' || category === filterValue) {
+                    card.classList.remove('is-hidden');
+                } else {
+                    card.classList.add('is-hidden');
+                }
+            });
+        });
+    });
+
+    // ============================================
+    // 5. BUYURTMA VA HAMKORLIK TUGMALARI
     // ============================================
     const orderServiceBtn = document.querySelector('#orderServiceBtn');
     if (orderServiceBtn) {
@@ -103,14 +127,72 @@ document.addEventListener('DOMContentLoaded', () => {
     const hireButtons = document.querySelectorAll('#navHireBtn, #hireMeBtn');
     hireButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            alert("Rahmat! Bog'lanish uchun tez orada aloqaga chiqamiz.");
+            const contactSection = document.querySelector('#contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
         });
     });
 
-    const downloadCvBtn = document.querySelector('#downloadCvBtn');
-    if (downloadCvBtn) {
-        downloadCvBtn.addEventListener('click', () => {
-            alert('Rezyume (CV) yuklab olish boshlanmoqda...');
+    // ============================================
+    // 6. ALOQA FORMASI VA CHIROYLI MODAL OYNA (Success Modal)
+    // ============================================
+    const contactForm = document.querySelector('#contactForm');
+    const successModal = document.querySelector('#successModal');
+    const modalCloseBtn = document.querySelector('#modalCloseBtn');
+    const modalOkBtn = document.querySelector('#modalOkBtn');
+    const modalSenderName = document.querySelector('#modalSenderName');
+    const modalSenderEmail = document.querySelector('#modalSenderEmail');
+
+    // Modalni ochish funksiyasi
+    const openModal = (name, email) => {
+        if (modalSenderName) modalSenderName.textContent = name || "Do'stim";
+        if (modalSenderEmail) modalSenderEmail.textContent = email || "pochtangiz";
+        if (successModal) {
+            successModal.classList.add('is-open');
+            successModal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden'; // Orqa fon skrollini to'xtatish
+        }
+    };
+
+    // Modalni yopish funksiyasi
+    const closeModal = () => {
+        if (successModal) {
+            successModal.classList.remove('is-open');
+            successModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = ''; // Skrollni qaytarish
+        }
+    };
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.querySelector('#userName').value.trim();
+            const email = document.querySelector('#userEmail').value.trim();
+            
+            // Chiroyli oyna ochish
+            openModal(name, email);
+            contactForm.reset();
         });
     }
+
+    // Yopish tugmalari
+    if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+    if (modalOkBtn) modalOkBtn.addEventListener('click', closeModal);
+
+    // Fonni (Overlay) bosganda yopish
+    if (successModal) {
+        successModal.addEventListener('click', (e) => {
+            if (e.target === successModal) {
+                closeModal();
+            }
+        });
+    }
+
+    // Escape tugmasi bosilganda yopish
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && successModal && successModal.classList.contains('is-open')) {
+            closeModal();
+        }
+    });
 });

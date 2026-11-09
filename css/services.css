@@ -276,12 +276,27 @@
 }
 
 @media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
     .service-detail-box {
         flex-direction: column;
         text-align: center;
+        padding: var(--spacing-md);
+        gap: var(--spacing-md);
     }
 
     .service-order-btn {
         width: 100%;
+    }
+
+    .services-filter {
+        gap: 0.4rem;
+    }
+
+    .filter-btn {
+        padding: 0.4rem 0.9rem;
+        font-size: var(--font-size-xs);
     }
 }

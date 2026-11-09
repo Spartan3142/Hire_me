@@ -1,0 +1,204 @@
+/* ============================================
+   PROJECTS.CSS — Portfolio (Mening Ishlarim) bo'limi stillari
+   Dark luxury & Orange UI
+   ============================================ */
+
+.portfolio-section {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-2xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    z-index: 1;
+}
+
+/* Portfolio filtrlash tugmalari */
+.portfolio-filter {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-xl);
+}
+
+.portfolio-filter-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-text-muted);
+    padding: 0.5rem 1.3rem;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    border-radius: var(--radius-full);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.portfolio-filter-btn:hover {
+    color: var(--color-text);
+    border-color: rgba(255, 107, 0, 0.5);
+    background: rgba(255, 107, 0, 0.08);
+}
+
+.portfolio-filter-btn.active {
+    background: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 15px rgba(255, 107, 0, 0.35);
+}
+
+/* Loyihalar Gridi */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Har bir loyiha kartochkasi */
+.project-card {
+    background: rgba(28, 28, 28, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 107, 0, 0.5);
+    background: rgba(35, 35, 35, 0.95);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 107, 0, 0.15);
+}
+
+.project-card.is-hidden {
+    display: none;
+}
+
+/* Loyiha rasmi banneri */
+.project-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background: #1a1a1a;
+    overflow: hidden;
+}
+
+.project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-img {
+    transform: scale(1.08);
+}
+
+/* Kategoriya burchak nishoni */
+.project-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(8px);
+    color: var(--color-primary);
+    border: 1px solid rgba(255, 107, 0, 0.3);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+}
+
+/* Loyiha matnlari */
+.project-content {
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.project-title {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xs);
+    transition: color var(--transition-fast);
+}
+
+.project-card:hover .project-title {
+    color: var(--color-primary);
+}
+
+.project-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    line-height: 1.55;
+    margin-bottom: var(--spacing-md);
+    flex-grow: 1;
+}
+
+/* Texnologiyalar teglari */
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.project-tag {
+    font-size: 0.72rem;
+    color: #b5b5b5;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius-sm);
+}
+
+/* Harakat tugmalari */
+.project-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.project-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--color-primary);
+    background: transparent;
+    padding: 0.4rem 0;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.project-link-btn svg {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+    transition: transform var(--transition-fast);
+}
+
+.project-link-btn:hover {
+    color: #ffffff;
+}
+
+.project-link-btn:hover svg {
+    transform: translate(2px, -2px);
+}
+
+/* Responsivlik */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}

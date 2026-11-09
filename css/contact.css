@@ -1,0 +1,364 @@
+/* ============================================
+   CONTACT.CSS — Bog'lanish (Contact) bo'limi stillari
+   Dark luxury & Orange UI
+   ============================================ */
+
+.contact-section {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-2xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    z-index: 1;
+}
+
+/* 2 ustunli joylashuv */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--spacing-2xl);
+    align-items: start;
+    margin-top: var(--spacing-xl);
+}
+
+/* Chap ustun: Aloqa kartochkalari */
+.contact-info-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.contact-info-card {
+    background: rgba(28, 28, 28, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    transition: all var(--transition-fast);
+}
+
+.contact-info-card:hover {
+    border-color: rgba(255, 107, 0, 0.4);
+    background: rgba(35, 35, 35, 0.9);
+    transform: translateX(4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.contact-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 107, 0, 0.12);
+    border: 1px solid rgba(255, 107, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.contact-icon-box svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+
+.contact-card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-card-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.2rem;
+}
+
+.contact-card-val {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--color-text);
+    transition: color var(--transition-fast);
+}
+
+.contact-info-card:hover .contact-card-val {
+    color: var(--color-primary);
+}
+
+/* O'ng ustun: Aloqa formasi */
+.contact-form-card {
+    background: rgba(28, 28, 28, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-xl);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+.form-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    background: rgba(18, 18, 18, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-text);
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    font-family: inherit;
+    transition: all var(--transition-fast);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.2);
+    background: rgba(24, 24, 24, 0.95);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-submit-btn {
+    width: 100%;
+    background: var(--color-primary);
+    color: #ffffff;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    padding: 0.85rem 1.8rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    margin-top: var(--spacing-xs);
+}
+
+.form-submit-btn:hover {
+    background: var(--color-primary-dark);
+    box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+.form-submit-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+/* ============================================
+   FOOTER (Pastki qism)
+   ============================================ */
+.footer-bottom {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-dim);
+}
+
+.footer-bottom a {
+    color: var(--color-primary);
+    transition: color var(--transition-fast);
+}
+
+.footer-bottom a:hover {
+    color: #ffffff;
+}
+
+/* Responsivlik */
+@media (max-width: 868px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        text-align: center;
+    }
+}
+
+/* ============================================
+   MODAL OYNA (Success Popup Dialog)
+   Dark & Orange Luxury dizayndagi kichik oyna
+   ============================================ */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: var(--spacing-md);
+}
+
+.modal-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Modal kartochkasi */
+.modal-card {
+    background: #1c1c1c;
+    border: 1px solid rgba(255, 107, 0, 0.4);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl) var(--spacing-2xl);
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 107, 0, 0.2);
+    transform: scale(0.85) translateY(20px);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-overlay.is-open .modal-card {
+    transform: scale(1) translateY(0);
+}
+
+/* Yopish tugmachasi (X) */
+.modal-close-icon {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.modal-close-icon:hover {
+    color: #ffffff;
+    background: rgba(255, 107, 0, 0.2);
+    border-color: var(--color-primary);
+    transform: rotate(90deg);
+}
+
+.modal-close-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+/* Muvaffaqiyat ikonkasi (Checkmark) */
+.modal-success-icon {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto var(--spacing-md);
+    border-radius: var(--radius-full);
+    background: radial-gradient(circle, rgba(255, 107, 0, 0.2) 0%, rgba(255, 107, 0, 0.05) 70%);
+    border: 2px solid var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    box-shadow: 0 0 25px rgba(255, 107, 0, 0.4);
+    animation: iconPop 0.5s ease;
+}
+
+.modal-success-icon svg {
+    width: 34px;
+    height: 34px;
+    fill: currentColor;
+}
+
+@keyframes iconPop {
+    0% { transform: scale(0.5); opacity: 0; }
+    70% { transform: scale(1.15); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Modal sarlavhalari */
+.modal-title {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xs);
+}
+
+.modal-title span {
+    color: var(--color-primary);
+}
+
+.modal-text {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-xl);
+}
+
+.modal-email-preview {
+    color: var(--color-primary);
+    font-weight: 600;
+    word-break: break-all;
+}
+
+/* Yopish tugmasi */
+.modal-btn {
+    background: var(--color-primary);
+    color: #ffffff;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    padding: 0.8rem 2.2rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-primary);
+    width: 100%;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.modal-btn:hover {
+    background: var(--color-primary-dark);
+    box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4);
+    transform: translateY(-2px);
+}
