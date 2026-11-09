@@ -77,12 +77,24 @@ body {
 
 /* Logo */
 .logo {
-    font-size: var(--font-size-xl);
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    color: var(--color-primary);
-    text-shadow: 0 0 15px rgba(255, 107, 0, 0.4);
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
     cursor: pointer;
+    line-height: 1;
+}
+
+.logo-img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+
+.logo:hover .logo-img {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 12px rgba(255, 107, 0, 0.6));
 }
 
 /* Navigatsiya havolalari */
