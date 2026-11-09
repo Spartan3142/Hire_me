@@ -9,9 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Portfolio va Xizmatlar bo\'limi muvaffaqiyatli ishga tushdi!');
 
     // ============================================
-    // 1. NAVIGATSIYA HAVOLALARI (Smooth Scroll va Active)
+    // 1. NAVIGATSIYA (Sticky Navbar, Smooth Scroll va ScrollSpy)
     // ============================================
+    const headerNav = document.querySelector('.header-nav');
     const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
+
+    // Silliq skroll qilish
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             const targetId = link.getAttribute('href');
@@ -19,13 +23,55 @@ document.addEventListener('DOMContentLoaded', () => {
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     e.preventDefault();
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    // Sticky navbar balandligini hisobga olib siljitish
+                    const navHeight = headerNav ? headerNav.offsetHeight : 0;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navHeight - 10;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+
                     navLinks.forEach(item => item.classList.remove('active'));
                     link.classList.add('active');
                 }
             }
         });
     });
+
+    // Skroll bo'yicha hodisalarni tinglash (Sticky & ScrollSpy)
+    const handleScroll = () => {
+        const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+        // 1. Sticky fonni faollashtirish
+        if (headerNav) {
+            if (scrollY > 30) {
+                headerNav.classList.add('is-sticky');
+            } else {
+                headerNav.classList.remove('is-sticky');
+            }
+        }
+
+        // 2. ScrollSpy: Ekranda turgan bo'limni menyuda avtomatik belgilash
+        sections.forEach(current => {
+            const sectionHeight = current.offsetHeight;
+            const sectionTop = current.offsetTop - 140;
+            const sectionId = current.getAttribute('id');
+
+            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Dastlabki yuklanishda tekshirish
 
     // ============================================
     // 2. XIZMATLAR FILTRLASH (Interactive Filter)
