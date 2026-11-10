@@ -242,14 +242,61 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const name = document.querySelector('#userName').value.trim();
-            const email = document.querySelector('#userEmail').value.trim();
-            
-            // Chiroyli oyna ochish
-            openModal(name, email);
-            contactForm.reset();
+
+            const nameInput = document.querySelector('#userName');
+            const emailInput = document.querySelector('#userEmail');
+            const subjectInput = document.querySelector('#userSubject');
+            const messageInput = document.querySelector('#userMessage');
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const submitBtnText = submitBtn ? submitBtn.querySelector('span') : null;
+            const originalText = submitBtnText ? submitBtnText.textContent : 'Xabarni Yuborish';
+
+            const name = nameInput ? nameInput.value.trim() : '';
+            const email = emailInput ? emailInput.value.trim() : '';
+            const subject = subjectInput ? subjectInput.value.trim() : '';
+            const message = messageInput ? messageInput.value.trim() : '';
+
+            if (!name || !email || !message) {
+                return;
+            }
+
+            // Tugma holatini o'zgartirish (Yuborish jarayoni)
+            if (submitBtn) submitBtn.disabled = true;
+            if (submitBtnText) submitBtnText.textContent = 'Yuborilmoqda...';
+
+            try {
+                const response = await fetch('https://formsubmit.co/ajax/ferganafergana66@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        _subject: subject ? `Portfolio: ${subject}` : `Portfolio saytidan yangi xabar (${name})`,
+                        message: message,
+                        _template: 'table',
+                        _captcha: 'false'
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Xat yuborishda xatolik yuz berdi');
+                }
+
+                // Muvaffaqiyatli xabar oynasini ochish
+                openModal(name, email);
+                contactForm.reset();
+            } catch (error) {
+                console.error('Xabar yuborishda xatolik:', error);
+                alert("Kechirasiz, xabarni yuborishda xatolik yuz berdi. Iltimos, to'g'ridan-to'g'ri ferganafergana66@gmail.com manziliga yozing.");
+            } finally {
+                if (submitBtn) submitBtn.disabled = false;
+                if (submitBtnText) submitBtnText.textContent = originalText;
+            }
         });
     }
 
