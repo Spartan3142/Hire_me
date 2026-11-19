@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Pastdagi panelni yangilash
             if (detailTitle && detailDesc) {
                 detailTitle.textContent = `Tanlangan xizmat: ${title}`;
-                detailDesc.innerHTML = `${detail} <strong style="color: #ffffff; margin-left: 8px;">${time}</strong>`;
+                detailDesc.innerHTML = `${detail} <strong class="detail-time" style="margin-left: 8px;">${time}</strong>`;
                 
                 // Panelga yengil vizual impuls berish
                 const detailBox = document.querySelector('#serviceDetailBox');
@@ -319,4 +319,21 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
+
+    // ============================================
+    // 7. MAVZU (DARK / LIGHT MODE) BOSHQARUVI
+    // ============================================
+    const themeToggleBtn = document.querySelector('#themeToggleBtn');
+    const rootHtml = document.documentElement;
+    const THEME_STORAGE_KEY = 'portfolio_theme';
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = rootHtml.getAttribute('data-theme') || 'dark';
+            const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            rootHtml.setAttribute('data-theme', nextTheme);
+            localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+        });
+    }
 });

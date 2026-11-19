@@ -17,3 +17,6 @@
 @import url('./about.css');
 @import url('./projects.css');
 @import url('./contact.css');
+
+/* Dark & Light rejimlar va mavzu boshqaruvi */
+@import url('./theme.css');

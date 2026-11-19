@@ -1,0 +1,618 @@
+/* ============================================
+   THEME.CSS — Dark / Light Luxury Theming System
+   Kimsanov Diyorbek Portfolio
+   ============================================ */
+
+/* === DEFAULT: DARK MODE TOKENS === */
+:root {
+    --color-body-bg: #0d0d0d;
+    --bg-grid-color: rgba(255, 255, 255, 0.02);
+    --bg-radial-1: rgba(255, 107, 0, 0.08);
+    --bg-radial-2: rgba(255, 107, 0, 0.05);
+
+    --color-frame-bg: #121212;
+    --color-frame-border: rgba(255, 255, 255, 0.1);
+    --color-frame-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 100px rgba(255, 107, 0, 0.05);
+    --color-frame-glow: radial-gradient(circle, rgba(255, 107, 0, 0.18) 0%, transparent 70%);
+
+    --color-nav-bg: #121212;
+    --color-nav-sticky-bg: rgba(18, 18, 18, 0.9);
+    --color-nav-sticky-border: rgba(255, 107, 0, 0.3);
+    --color-nav-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 107, 0, 0.08);
+
+    --color-text: #ffffff;
+    --color-text-muted: #9e9e9e;
+    --color-text-dim: #666666;
+
+    --color-card-bg: rgba(28, 28, 28, 0.7);
+    --color-card-border: rgba(255, 255, 255, 0.07);
+    --color-card-hover-bg: rgba(35, 35, 35, 0.9);
+    --color-card-active-bg: rgba(38, 38, 38, 0.95);
+    --color-card-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    --color-card-hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 107, 0, 0.12);
+
+    --color-stats-bg: rgba(30, 30, 30, 0.75);
+    --color-stats-border: rgba(255, 255, 255, 0.08);
+    --color-stats-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+
+    --color-divider: rgba(255, 255, 255, 0.08);
+
+    --color-avatar-bg: radial-gradient(circle, #222222 0%, #151515 80%);
+    --color-avatar-border: rgba(255, 255, 255, 0.08);
+    --color-avatar-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+
+    --color-filter-btn-bg: rgba(255, 255, 255, 0.04);
+    --color-filter-btn-border: rgba(255, 255, 255, 0.1);
+
+    --color-tag-bg: rgba(255, 255, 255, 0.05);
+    --color-tag-border: rgba(255, 255, 255, 0.08);
+    --color-tag-text: #c4c4c4;
+
+    --color-social-bg: rgba(255, 255, 255, 0.03);
+    --color-social-border: rgba(255, 255, 255, 0.2);
+    --color-social-text: #9e9e9e;
+
+    --color-input-bg: rgba(18, 18, 18, 0.8);
+    --color-input-border: rgba(255, 255, 255, 0.1);
+    --color-input-focus-bg: rgba(24, 24, 24, 0.95);
+
+    --color-modal-bg: #1c1c1c;
+    --color-modal-border: rgba(255, 107, 0, 0.4);
+    --color-modal-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 107, 0, 0.2);
+    --color-modal-overlay: rgba(0, 0, 0, 0.75);
+
+    --color-toggle-bg: rgba(255, 255, 255, 0.06);
+    --color-toggle-border: rgba(255, 255, 255, 0.14);
+    --color-toggle-color: #d1d5db;
+
+    --logo-filter: none;
+}
+
+/* === LIGHT LUXURY MODE TOKENS === */
+[data-theme="light"] {
+    --color-body-bg: #f4f5f8;
+    --bg-grid-color: rgba(0, 0, 0, 0.018);
+    --bg-radial-1: rgba(255, 107, 0, 0.05);
+    --bg-radial-2: rgba(255, 107, 0, 0.03);
+
+    --color-frame-bg: #ffffff;
+    --color-frame-border: rgba(0, 0, 0, 0.08);
+    --color-frame-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.07), 0 0 50px rgba(255, 107, 0, 0.03);
+    --color-frame-glow: radial-gradient(circle, rgba(255, 107, 0, 0.08) 0%, transparent 70%);
+
+    --color-nav-bg: #ffffff;
+    --color-nav-sticky-bg: rgba(255, 255, 255, 0.92);
+    --color-nav-sticky-border: rgba(255, 107, 0, 0.25);
+    --color-nav-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 0 15px rgba(255, 107, 0, 0.04);
+
+    --color-text: #0f172a;
+    --color-text-muted: #555d6e;
+    --color-text-dim: #94a3b8;
+
+    --color-card-bg: #ffffff;
+    --color-card-border: rgba(0, 0, 0, 0.07);
+    --color-card-hover-bg: #ffffff;
+    --color-card-active-bg: #ffffff;
+    --color-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    --color-card-hover-shadow: 0 16px 36px rgba(0, 0, 0, 0.08), 0 0 25px rgba(255, 107, 0, 0.08);
+
+    --color-stats-bg: rgba(255, 255, 255, 0.9);
+    --color-stats-border: rgba(0, 0, 0, 0.08);
+    --color-stats-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+    --color-divider: rgba(0, 0, 0, 0.07);
+
+    --color-avatar-bg: radial-gradient(circle, #f8fafc 0%, #e2e8f0 85%);
+    --color-avatar-border: rgba(0, 0, 0, 0.06);
+    --color-avatar-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+
+    --color-filter-btn-bg: rgba(0, 0, 0, 0.04);
+    --color-filter-btn-border: rgba(0, 0, 0, 0.08);
+
+    --color-tag-bg: #f1f5f9;
+    --color-tag-border: rgba(0, 0, 0, 0.06);
+    --color-tag-text: #475569;
+
+    --color-social-bg: rgba(0, 0, 0, 0.03);
+    --color-social-border: rgba(0, 0, 0, 0.1);
+    --color-social-text: #475569;
+
+    --color-input-bg: #f8fafc;
+    --color-input-border: #cbd5e1;
+    --color-input-focus-bg: #ffffff;
+
+    --color-modal-bg: #ffffff;
+    --color-modal-border: rgba(0, 0, 0, 0.1);
+    --color-modal-shadow: 0 25px 60px rgba(0, 0, 0, 0.18), 0 0 40px rgba(255, 107, 0, 0.1);
+    --color-modal-overlay: rgba(15, 23, 42, 0.45);
+
+    --color-toggle-bg: rgba(0, 0, 0, 0.04);
+    --color-toggle-border: rgba(0, 0, 0, 0.1);
+    --color-toggle-color: #334155;
+
+    --logo-filter: invert(1) brightness(0.18) sepia(0.3);
+}
+
+/* ============================================
+   SMOOTH THEME TRANSITION
+   ============================================ */
+body,
+.app-frame,
+.header-nav,
+.service-card,
+.project-card,
+.contact-info-card,
+.contact-form-card,
+.about-skills-card,
+.stats-card,
+.service-detail-box,
+.modal-card {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ============================================
+   LIGHT MODE OVERRIDES
+   ============================================ */
+
+/* Page & Frame */
+[data-theme="light"] body {
+    background-color: var(--color-body-bg);
+    background-image: 
+        radial-gradient(circle at 10% 20%, var(--bg-radial-1) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, var(--bg-radial-2) 0%, transparent 40%),
+        linear-gradient(135deg, var(--bg-grid-color) 25%, transparent 25%),
+        linear-gradient(225deg, var(--bg-grid-color) 25%, transparent 25%);
+    color: var(--color-text);
+}
+
+[data-theme="light"] .app-frame {
+    background-color: var(--color-frame-bg);
+    border-color: var(--color-frame-border);
+    box-shadow: var(--color-frame-shadow);
+}
+
+[data-theme="light"] .app-frame::before {
+    background: var(--color-frame-glow);
+}
+
+/* Navbar */
+[data-theme="light"] .header-nav {
+    background: var(--color-nav-bg);
+}
+
+[data-theme="light"] .header-nav.is-sticky {
+    background: var(--color-nav-sticky-bg);
+    border-bottom: 1px solid var(--color-nav-sticky-border);
+    box-shadow: var(--color-nav-shadow);
+}
+
+[data-theme="light"] .nav-link {
+    color: var(--color-text-muted);
+}
+
+[data-theme="light"] .nav-link:hover {
+    color: var(--color-text);
+}
+
+[data-theme="light"] .nav-link.active {
+    color: var(--color-primary);
+}
+
+[data-theme="light"] .logo-img {
+    filter: var(--logo-filter);
+    border-radius: 6px;
+}
+
+/* Hero */
+[data-theme="light"] .hero__greeting {
+    color: var(--color-text-muted);
+}
+
+[data-theme="light"] .hero__name {
+    color: var(--color-text);
+}
+
+[data-theme="light"] .social-btn {
+    border-color: var(--color-social-border);
+    background: var(--color-social-bg);
+    color: var(--color-social-text);
+}
+
+[data-theme="light"] .social-btn:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    background: rgba(255, 107, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(255, 107, 0, 0.2);
+}
+
+[data-theme="light"] .btn-outline {
+    color: var(--color-text);
+    border-color: var(--color-social-border);
+}
+
+[data-theme="light"] .btn-outline:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background-color: rgba(255, 107, 0, 0.05);
+}
+
+[data-theme="light"] .stats-card {
+    background: var(--color-stats-bg);
+    border-color: var(--color-stats-border);
+    box-shadow: var(--color-stats-shadow);
+}
+
+[data-theme="light"] .stat-item:not(:last-child) {
+    border-right-color: var(--color-divider);
+}
+
+[data-theme="light"] .stat-label {
+    color: var(--color-text-muted);
+}
+
+[data-theme="light"] .avatar-bg-circle {
+    background: var(--color-avatar-bg);
+    border-color: var(--color-avatar-border);
+    box-shadow: var(--color-avatar-shadow);
+}
+
+/* Section dividers & Headers */
+[data-theme="light"] .services-section,
+[data-theme="light"] .about-section,
+[data-theme="light"] .portfolio-section,
+[data-theme="light"] .contact-section {
+    border-top-color: var(--color-divider);
+}
+
+[data-theme="light"] .section-title {
+    color: var(--color-text);
+}
+
+[data-theme="light"] .section-desc {
+    color: var(--color-text-muted);
+}
+
+/* Filters */
+[data-theme="light"] .filter-btn,
+[data-theme="light"] .portfolio-filter-btn {
+    background: var(--color-filter-btn-bg);
+    border-color: var(--color-filter-btn-border);
+    color: var(--color-text-muted);
+}
+
+[data-theme="light"] .filter-btn:hover,
+[data-theme="light"] .portfolio-filter-btn:hover {
+    color: var(--color-text);
+    border-color: rgba(255, 107, 0, 0.5);
+    background: rgba(255, 107, 0, 0.08);
+}
+
+[data-theme="light"] .filter-btn.active,
+[data-theme="light"] .portfolio-filter-btn.active {
+    background: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
+}
+
+/* Service cards */
+[data-theme="light"] .service-card {
+    background: var(--color-card-bg);
+    border-color: var(--color-card-border);
+    box-shadow: var(--color-card-shadow);
+}
+
+[data-theme="light"] .service-card:hover {
+    background: var(--color-card-hover-bg);
+    border-color: rgba(255, 107, 0, 0.4);
+    box-shadow: var(--color-card-hover-shadow);
+}
+
+[data-theme="light"] .service-card.is-active {
+    background: var(--color-card-active-bg);
+    border-color: var(--color-primary);
+    box-shadow: var(--color-card-hover-shadow);
+}
+
+[data-theme="light"] .service-title {
+    color: var(--color-text);
+}
+
+[data-theme="light"] .service-desc {
+    color: var(--color-text-muted);
+}
+
+[data-theme="light"] .service-tag {
+    background: var(--color-tag-bg);
+    border-color: var(--color-tag-border);
+    color: var(--color-tag-text);
+}
+
+[data-theme="light"] .service-detail-box {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(255, 107, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .service-detail-info p {
+    color: var(--color-text-muted);
+}
+
+.detail-time {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* About Section */
+[data-theme="light"] .about-heading {
+    color: var(--color-text);
+}
+
+[data-theme="light"] .about-text {
+    color: var(--color-text-muted);
+}
+
+[data-theme="light"] .about-info-list {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: var(--color-divider);
+}
+
+[data-theme="light"] .info-label {
+    color: var(--color-text-muted);
+}
+
+[data-theme="light"] .info-value {
+    color: var(--color-text);
+}
+
+[data-theme="light"] .soft-skill-badge {
+    color: #1e293b;
+    background: rgba(255, 107, 0, 0.08);
+    border-color: rgba(255, 107, 0, 0.25);
+}
+
+[data-theme="light"] .soft-skill-badge:hover {
+    color: #000000;
+    background: rgba(255, 107, 0, 0.18);
+    border-color: var(--color-primary);
+}
+
+[data-theme="light"] .about-skills-card {
+    background: var(--color-card-bg);
+    border-color: var(--color-card-border);
+    box-shadow: var(--color-card-shadow);
+}
+
+[data-theme="light"] .skills-card-title {
+    color: var(--color-text);
+}
+
+[data-theme="light"] .skill-name {
+    color: var(--color-text);
+}
+
+[data-theme="light"] .skill-bar-bg {
+    background: #e2e8f0;
+}
+
+/* Portfolio / Projects */
+[data-theme="light"] .project-card {
+    background: var(--color-card-bg);
+    border-color: var(--color-card-border);
+    box-shadow: var(--color-card-shadow);
+}
+
+[data-theme="light"] .project-card:hover {
+    background: var(--color-card-hover-bg);
+    border-color: rgba(255, 107, 0, 0.45);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 0 30px rgba(255, 107, 0, 0.1);
+}
+
+[data-theme="light"] .project-img-wrapper {
+    background: #f1f5f9;
+}
+
+[data-theme="light"] .project-badge {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(255, 107, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .project-title {
+    color: var(--color-text);
+}
+
+[data-theme="light"] .project-desc {
+    color: var(--color-text-muted);
+}
+
+[data-theme="light"] .project-tag {
+    background: var(--color-tag-bg);
+    border-color: var(--color-tag-border);
+    color: var(--color-tag-text);
+}
+
+[data-theme="light"] .project-links {
+    border-top-color: var(--color-divider);
+}
+
+[data-theme="light"] .project-link-btn:hover {
+    color: var(--color-primary-dark);
+}
+
+/* Contact Section */
+[data-theme="light"] .contact-info-card {
+    background: var(--color-card-bg);
+    border-color: var(--color-card-border);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="light"] .contact-info-card:hover {
+    background: #ffffff;
+    border-color: rgba(255, 107, 0, 0.4);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .contact-card-label {
+    color: var(--color-text-muted);
+}
+
+[data-theme="light"] .contact-card-val {
+    color: var(--color-text);
+}
+
+[data-theme="light"] .contact-form-card {
+    background: var(--color-card-bg);
+    border-color: var(--color-card-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .form-label {
+    color: #334155;
+}
+
+[data-theme="light"] .form-input,
+[data-theme="light"] .form-textarea {
+    background: var(--color-input-bg);
+    border-color: var(--color-input-border);
+    color: var(--color-text);
+}
+
+[data-theme="light"] .form-input:focus,
+[data-theme="light"] .form-textarea:focus {
+    background: var(--color-input-focus-bg);
+    box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.18);
+}
+
+[data-theme="light"] .form-input::placeholder,
+[data-theme="light"] .form-textarea::placeholder {
+    color: var(--color-text-dim);
+}
+
+[data-theme="light"] .footer-bottom {
+    border-top-color: var(--color-divider);
+    color: var(--color-text-muted);
+}
+
+[data-theme="light"] .footer-bottom a {
+    color: var(--color-primary);
+}
+
+/* Modal */
+[data-theme="light"] .modal-overlay {
+    background: var(--color-modal-overlay);
+}
+
+[data-theme="light"] .modal-card {
+    background: var(--color-modal-bg);
+    border-color: var(--color-modal-border);
+    box-shadow: var(--color-modal-shadow);
+}
+
+[data-theme="light"] .modal-title {
+    color: var(--color-text);
+}
+
+[data-theme="light"] .modal-text {
+    color: var(--color-text-muted);
+}
+
+[data-theme="light"] .modal-close-icon {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: var(--color-text-muted);
+}
+
+[data-theme="light"] .modal-close-icon:hover {
+    color: var(--color-text);
+    background: rgba(255, 107, 0, 0.15);
+    border-color: var(--color-primary);
+}
+
+/* ============================================
+   ELEGANT THEME TOGGLE BUTTON
+   ============================================ */
+.header-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.theme-toggle {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-full);
+    background: var(--color-toggle-bg);
+    border: 1px solid var(--color-toggle-border);
+    color: var(--color-toggle-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 0;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-toggle:hover {
+    border-color: rgba(255, 107, 0, 0.5);
+    background: rgba(255, 107, 0, 0.08);
+    color: var(--color-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(255, 107, 0, 0.16);
+}
+
+.theme-toggle:active {
+    transform: scale(0.94);
+}
+
+.theme-toggle svg {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 0.25s ease;
+}
+
+/* In Dark mode: show Sun icon to switch to light */
+.theme-toggle .icon-sun {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+.theme-toggle .icon-moon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.4);
+}
+
+/* In Light mode: show Moon icon to switch to dark */
+[data-theme="light"] .theme-toggle .icon-sun {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.4);
+}
+
+[data-theme="light"] .theme-toggle .icon-moon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+/* Mobile Responsiveness for Header Actions */
+@media (max-width: 640px) {
+    .header-actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .btn-nav {
+        flex: 1;
+    }
+}
