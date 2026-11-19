@@ -107,31 +107,61 @@ document.addEventListener('DOMContentLoaded', () => {
     const detailDesc = document.querySelector('#detailDesc');
     let currentSelectedService = 'UI/UX Dizayn';
 
+    function updateServiceDetail(card) {
+        if (!card) return;
+        const category = card.getAttribute('data-category');
+        const lang = (typeof currentLang !== 'undefined') ? currentLang : 'uz';
+        const dict = (window.portfolioTranslations && window.portfolioTranslations[lang]) ? window.portfolioTranslations[lang] : null;
+
+        const isCard3 = card.getAttribute('data-title') && card.getAttribute('data-title').includes('Responsive');
+        let title = card.getAttribute('data-title') || 'Xizmat';
+        let detail = card.getAttribute('data-detail') || '';
+        let time = card.getAttribute('data-time') || '';
+
+        if (dict && dict.services) {
+            if (category === 'design') {
+                title = dict.services.card1Title;
+                detail = dict.services.card1Detail;
+                time = dict.services.card1Time;
+            } else if (isCard3) {
+                title = dict.services.card3Title;
+                detail = dict.services.card3Detail;
+                time = dict.services.card3Time;
+            } else if (category === 'dev') {
+                title = dict.services.card2Title;
+                detail = dict.services.card2Detail;
+                time = dict.services.card2Time;
+            } else if (category === 'audit') {
+                title = dict.services.card4Title;
+                detail = dict.services.card4Detail;
+                time = dict.services.card4Time;
+            }
+        }
+
+        currentSelectedService = title;
+
+        if (detailTitle && detailDesc) {
+            const prefix = dict && dict.services && dict.services.detailPrefix ? dict.services.detailPrefix : 'Tanlangan xizmat:';
+            detailTitle.textContent = `${prefix} ${title}`;
+            detailDesc.innerHTML = `${detail} <strong class="detail-time" style="margin-left: 8px;">${time}</strong>`;
+        }
+    }
+
     serviceCards.forEach(card => {
         card.addEventListener('click', () => {
             // Faol kartani belgilash
             serviceCards.forEach(c => c.classList.remove('is-active'));
             card.classList.add('is-active');
 
-            // Ma'lumotlarni o'qish
-            const title = card.getAttribute('data-title') || 'Xizmat';
-            const detail = card.getAttribute('data-detail') || '';
-            const time = card.getAttribute('data-time') || '';
-            currentSelectedService = title;
-
-            // Pastdagi panelni yangilash
-            if (detailTitle && detailDesc) {
-                detailTitle.textContent = `Tanlangan xizmat: ${title}`;
-                detailDesc.innerHTML = `${detail} <strong class="detail-time" style="margin-left: 8px;">${time}</strong>`;
-                
-                // Panelga yengil vizual impuls berish
-                const detailBox = document.querySelector('#serviceDetailBox');
-                if (detailBox) {
-                    detailBox.style.transform = 'scale(1.01)';
-                    setTimeout(() => {
-                        detailBox.style.transform = 'scale(1)';
-                    }, 200);
-                }
+            updateServiceDetail(card);
+            
+            // Panelga yengil vizual impuls berish
+            const detailBox = document.querySelector('#serviceDetailBox');
+            if (detailBox) {
+                detailBox.style.transform = 'scale(1.01)';
+                setTimeout(() => {
+                    detailBox.style.transform = 'scale(1)';
+                }, 200);
             }
         });
     });
@@ -168,8 +198,12 @@ document.addEventListener('DOMContentLoaded', () => {
         orderServiceBtn.addEventListener('click', () => {
             const contactSection = document.querySelector('#contact');
             const subjectInput = document.querySelector('#userSubject');
+            const lang = (typeof currentLang !== 'undefined') ? currentLang : 'uz';
+            const dict = (window.portfolioTranslations && window.portfolioTranslations[lang]) ? window.portfolioTranslations[lang] : null;
+            const prefix = dict && dict.services && dict.services.orderSubjectPrefix ? dict.services.orderSubjectPrefix : 'Xizmat:';
+
             if (subjectInput) {
-                subjectInput.value = `Xizmat: ${currentSelectedService}`;
+                subjectInput.value = `${prefix} ${currentSelectedService}`;
             }
             if (contactSection) {
                 contactSection.scrollIntoView({ behavior: 'smooth' });
@@ -195,8 +229,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const projName = btn.getAttribute('data-project-name') || 'Loyiha';
             const contactSection = document.querySelector('#contact');
             const subjectInput = document.querySelector('#userSubject');
+            const lang = (typeof currentLang !== 'undefined') ? currentLang : 'uz';
+            const dict = (window.portfolioTranslations && window.portfolioTranslations[lang]) ? window.portfolioTranslations[lang] : null;
+            const prefix = dict && dict.portfolio && dict.portfolio.projectSubjectPrefix ? dict.portfolio.projectSubjectPrefix : 'Loyiha:';
+
             if (subjectInput) {
-                subjectInput.value = `Loyiha: ${projName}`;
+                subjectInput.value = `${prefix} ${projName}`;
             }
             if (contactSection) {
                 contactSection.scrollIntoView({ behavior: 'smooth' });
@@ -207,7 +245,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const downloadCvBtn = document.querySelector('#downloadCvBtn');
     if (downloadCvBtn) {
         downloadCvBtn.addEventListener('click', () => {
-            alert('Diyorbek Kimsanov - UI/UX & Frontend CV (Rezyume) tez orada taqdim etiladi.');
+            const lang = (typeof currentLang !== 'undefined') ? currentLang : 'uz';
+            const dict = (window.portfolioTranslations && window.portfolioTranslations[lang]) ? window.portfolioTranslations[lang] : null;
+            const msg = dict && dict.hero && dict.hero.cvAlert 
+                ? dict.hero.cvAlert 
+                : 'Diyorbek Kimsanov - UI/UX & Frontend CV (Rezyume) tez orada taqdim etiladi.';
+            alert(msg);
         });
     }
 
@@ -263,8 +306,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Tugma holatini o'zgartirish (Yuborish jarayoni)
+            const lang = (typeof currentLang !== 'undefined') ? currentLang : 'uz';
+            const dict = (window.portfolioTranslations && window.portfolioTranslations[lang]) ? window.portfolioTranslations[lang] : null;
+            const sendingText = dict && dict.contact && dict.contact.formSubmitting ? dict.contact.formSubmitting : 'Yuborilmoqda...';
+            const errorAlertText = dict && dict.contact && dict.contact.formErrorAlert ? dict.contact.formErrorAlert : "Kechirasiz, xabarni yuborishda xatolik yuz berdi. Iltimos, to'g'ridan-to'g'ri ferganafergana66@gmail.com manziliga yozing.";
+
             if (submitBtn) submitBtn.disabled = true;
-            if (submitBtnText) submitBtnText.textContent = 'Yuborilmoqda...';
+            if (submitBtnText) submitBtnText.textContent = sendingText;
 
             try {
                 const response = await fetch('https://formsubmit.co/ajax/ferganafergana66@gmail.com', {
@@ -292,7 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 contactForm.reset();
             } catch (error) {
                 console.error('Xabar yuborishda xatolik:', error);
-                alert("Kechirasiz, xabarni yuborishda xatolik yuz berdi. Iltimos, to'g'ridan-to'g'ri ferganafergana66@gmail.com manziliga yozing.");
+                alert(errorAlertText);
             } finally {
                 if (submitBtn) submitBtn.disabled = false;
                 if (submitBtnText) submitBtnText.textContent = originalText;
@@ -336,4 +384,83 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
         });
     }
+
+    // ============================================
+    // 8. KO'PTILLILIK (LANGUAGE SWITCHER: UZ / EN)
+    // ============================================
+    const langButtons = document.querySelectorAll('.lang-btn');
+    const LANG_STORAGE_KEY = 'portfolio_lang';
+    let currentLang = localStorage.getItem(LANG_STORAGE_KEY) || 'uz';
+
+    function getNestedTranslation(obj, path) {
+        return path.split('.').reduce((prev, curr) => (prev ? prev[curr] : undefined), obj);
+    }
+
+    function applyTranslations(lang) {
+        if (!window.portfolioTranslations || !window.portfolioTranslations[lang]) return;
+        const dict = window.portfolioTranslations[lang];
+        currentLang = lang;
+        document.documentElement.setAttribute('lang', lang);
+
+        // Tugmalardagi aktiv holatni yangilash
+        langButtons.forEach(btn => {
+            if (btn.getAttribute('data-lang') === lang) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        // Sahifa sarlavhasini (Title) yangilash
+        if (dict.meta && dict.meta.title) {
+            document.title = dict.meta.title;
+        }
+
+        // Oddiy matn elementlarini [data-i18n] yangilash
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            const translation = getNestedTranslation(dict, key);
+            if (translation !== undefined) {
+                el.textContent = translation;
+            }
+        });
+
+        // HTML elementlarini [data-i18n-html] yangilash
+        document.querySelectorAll('[data-i18n-html]').forEach(el => {
+            const key = el.getAttribute('data-i18n-html');
+            const translation = getNestedTranslation(dict, key);
+            if (translation !== undefined) {
+                el.innerHTML = translation;
+            }
+        });
+
+        // Placeholder atributlarini [data-i18n-placeholder] yangilash
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            const translation = getNestedTranslation(dict, key);
+            if (translation !== undefined) {
+                el.setAttribute('placeholder', translation);
+            }
+        });
+
+        // Xizmatlar panelini faol karta bo'yicha yangilash
+        const activeCard = document.querySelector('.service-card.is-active') || document.querySelector('.service-card');
+        if (activeCard && typeof updateServiceDetail === 'function') {
+            updateServiceDetail(activeCard);
+        }
+    }
+
+    // Til tugmalarini bosish hodisasi
+    langButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const selectedLang = btn.getAttribute('data-lang');
+            if (selectedLang && selectedLang !== currentLang) {
+                applyTranslations(selectedLang);
+                localStorage.setItem(LANG_STORAGE_KEY, selectedLang);
+            }
+        });
+    });
+
+    // Boshlang'ich yuklashda saqlangan tilni qo'llash
+    applyTranslations(currentLang);
 });
