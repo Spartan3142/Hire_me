@@ -15,6 +15,8 @@ window.portfolioTranslations = {
             about: "Men haqimda",
             portfolio: "Portfolio",
             testimonials: "Sharhlar",
+            calculator: "Kalkulyator",
+            faq: "FAQ",
             contact: "Bog'lanish",
             hire: "Hamkorlik"
         },
@@ -126,7 +128,42 @@ window.portfolioTranslations = {
             skill2: "HTML5 & Semantik Tuzilma",
             skill3: "CSS3 (Flexbox, Grid, Animatsiyalar)",
             skill4: "JavaScript (Vanilla ES6+, DOM)",
-            skill5: "Responsive & Mobile First Moslashuv"
+            skill5: "Responsive & Mobile First Moslashuv",
+
+            timelineTitle: "Tajriba & Faoliyat Xronologiyasi",
+            timelineDesc: "Professional sohadagi 5+ yillik izchil o'sish, muvaffaqiyatli loyihalar va amaliy bosqichlar.",
+            
+            tl1Period: "2024 — Hozirgacha",
+            tl1Role: "Senior UI/UX Dizayner & Frontend Freelancer",
+            tl1Place: "Xalqaro & Masofaviy Buyurtmalar",
+            tl1Desc: "Fintech, SaaS startaplar va E-commerce brendlari uchun eksklyuziv veb-interfeyslar, modulli Figma dizayn tizimlari hamda toza Vanilla JS frontend yechimlarini ishlab chiqish.",
+            tl1Tag1: "Figma Design System",
+            tl1Tag2: "High-Converting UI",
+            tl1Tag3: "Performance Optimization",
+
+            tl2Period: "2022 — 2024",
+            tl2Role: "Lead UI/UX Dizayner (Product Design)",
+            tl2Place: "Raqamli Mahsulotlar Studiyasi",
+            tl2Desc: "Murakkab boshqaruv panellari (CRM/ERP dashboards), mobil banking va delivery ilovalarini noldan tadqiq qilish, prototiplash hamda jamoa bilan birgalikda muvaffaqiyatli ishga tushirish.",
+            tl2Tag1: "UX Research",
+            tl2Tag2: "Interactive Prototyping",
+            tl2Tag3: "Design Tokens",
+
+            tl3Period: "2021 — 2022",
+            tl3Role: "Frontend Veb Dasturchi",
+            tl3Place: "Web Development Agency",
+            tl3Desc: "Dizayn maketlarini pixel-perfect darajasida semantik HTML5, zamonaviy CSS3 (Flexbox/Grid) va toza JavaScript kodlari bilan barcha qurilmalarga moslashuvchan jonli saytga aylantirish.",
+            tl3Tag1: "Pixel Perfect",
+            tl3Tag2: "Mobile First",
+            tl3Tag3: "Clean Vanilla JS",
+
+            tl4Period: "2019 — 2021",
+            tl4Role: "UI Dizayn & Veb Asoslari",
+            tl4Place: "Karyera Boshlanishi & Amaliyot",
+            tl4Desc: "Tipografika, ranglar psixologiyasi, kompozitsiya va veb-standartlar bo'yicha chuqur amaliy o'rganish, dastlabki muvaffaqiyatli frilans mijoz loyihalari ustida ishlash.",
+            tl4Tag1: "Visual Design",
+            tl4Tag2: "Wireframing",
+            tl4Tag3: "Web Standards"
         },
         portfolio: {
             subtitle: "Portfolio",
@@ -183,6 +220,71 @@ window.portfolioTranslations = {
             card3Author: "Bobur Mansurov",
             card3Role: "Operatsion Direktor, Smart Delivery Logistics",
             card3Project: "Smart Delivery Express"
+        },
+        calculator: {
+            subtitle: "Narx Kalkulyatori",
+            title: "Loyiha Byudjetini Hisoblang",
+            desc: "Loyiha turini va kerakli xususiyatlarni tanlang — tizim muddat va narxni real vaqtda avtomatik hisoblab beradi.",
+            
+            step1Title: "1. Loyiha turini tanlang",
+            typeUi: "UI/UX Dizayn",
+            typeUiDesc: "Figma prototip, wireframe va to'liq interfeys dizayni",
+            typeWeb: "Veb-sayt / Landing",
+            typeWebDesc: "Dizayn + toza HTML5, CSS3 va Vanilla JS frontend",
+            typeEcom: "E-Commerce / Tizim",
+            typeEcomDesc: "Internet do'kon yoki murakkab web portal",
+            typeMobile: "Mobil Ilova Dizayni",
+            typeMobileDesc: "iOS & Android uchun zamonaviy mobil UI/UX",
+
+            step2Title: "2. Sahifalar / Ekranlar hajmi",
+            scale1: "1 - 3 sahifa (Boshlang'ich)",
+            scale2: "4 - 7 sahifa (Standart)",
+            scale3: "8 - 15 sahifa (Kengaytirilgan)",
+            scale4: "16+ sahifa (Katta tizim)",
+
+            step3Title: "3. Qo'shimcha imkoniyatlar",
+            optResponsive: "Responsive Mobile-First (Har qanday ekranga mukammal moslashuv)",
+            optResponsiveBadge: "Kiritilgan",
+            optTheme: "Dark & Light Luxury rejimi (Mavzu almashtirish)",
+            optAnimations: "Interaktiv animatsiyalar & mikro-effektlar",
+            optDesignSystem: "Figma Design System (Qayta ishlatiluvchi komponentlar kutubxonasi)",
+            optMultilang: "Ko'ptillilik (UZ / EN / RU til almashuvi)",
+            optSpeed: "Yuqori tezlik & SEO bazaviy optimizatsiya",
+
+            summaryTitle: "Hisob-Kitob Xulosasi",
+            summaryType: "Tanlangan tur:",
+            summaryScale: "Hajm:",
+            summaryExtras: "Qo'shimchalar:",
+            summaryExtrasNone: "Qo'shimchalar tanlanmagan",
+            summaryEstTime: "Taxminiy muddat:",
+            summaryEstPrice: "Taxminiy byudjet:",
+            daysSuffix: "kun",
+            orderBtn: "Ushbu hisob bilan buyurtma berish",
+            guarantee: "100% shaffof narxlar va bepul dastlabki maslahat",
+            subjectPrefix: "Loyiha hisobi:"
+        },
+        faq: {
+            subtitle: "FAQ",
+            title: "Ko'p Beriladigan Savollar",
+            desc: "Hamkorlikni boshlashdan oldin mijozlarimiz eng ko'p so'raydigan muhim savollarga ochiq va aniq javoblar.",
+
+            q1: "Loyiha uchun to'lov qanday tartibda amalga oshiriladi?",
+            a1: "Standart shartlarga ko'ra: 50% boshlang'ich avans to'lovi (ish boshlanishi uchun) va qolgan 50% loyiha to'liq qabul qilingandan so'ng to'lanadi. Katta hajmdagi tizimlarda bosqichma-bosqich (milestone) to'lov tartibi ham mumkin. To'lovlar bank kartasi, hisob-raqam yoki xalqaro o'tkazmalar orqali qabul qilinadi.",
+
+            q2: "Dizayn va kodga tuzatishlar (revisions) kiritish bepulmi?",
+            a2: "Ha, albatta! Har bir loyihada wireframe, dizayn va dasturlash bosqichlarida 2-3 davrali bepul tuzatishlar kiritish kafolatlangan. Men har bir qadamni siz bilan doimiy kelishib borganim sababli, kutilmagan o'zgarishlarga ehtiyoj deyarli qolmaydi.",
+
+            q3: "Siz faqat dizayn qilasizmi yoki tayyor saytni dasturlab ham berasizmi?",
+            a3: "Men har ikkala yo'nalishda professional ishlayman: faqat Figma'da UI/UX dizayn (dasturchilar uchun topshirishga tayyor) yoki dizayn bilan birga toza semantik HTML5, zamonaviy CSS3 va Vanilla JS yordamida to'liq ishlaydigan jonli frontend saytni yaratib bera olaman.",
+
+            q4: "Loyiha odatda qancha vaqt ichida tayyor bo'ladi?",
+            a4: "Oddiy landing sahifalar va vizitka saytlar 4–7 kun, to'liq korporativ sayt yoki mobil ilova dizayni 10–20 kun davom etadi. Agar sizga favqulodda shoshilinch natija kerak bo'lsa, muddatni tezlashtirish imkoniyati ham mavjud.",
+
+            q5: "Loyiha topshirilgandan keyin texnik qo'llab-quvvatlash bormi?",
+            a5: "Ha, loyiha to'liq topshirilgandan so'ng 14–30 kun davomida bepul kafolatlangan texnik qo'llab-quvvatlash taqdim etiladi. Bunga saytni xosting/serverga joylash, domen ulash va mayda savollarga tezkor yordam kiradi.",
+
+            q6: "Hamkorlikni boshlash uchun mendan nimalar talab qilinadi?",
+            a6: "Loyihangizning umumiy g'oyasi, maqsadi, agar mavjud bo'lsa yoqqan sayt namunalari (referenslar) va logotip/matnlar yetarli. Agar tayyor ma'lumotlar bo'lmasa, dastlabki brifing suhbatida barchasini noldan birgalikda shakllantiramiz."
         },
         contact: {
             subtitle: "Aloqa",
@@ -348,6 +450,8 @@ window.portfolioTranslations = {
             about: "About",
             portfolio: "Portfolio",
             testimonials: "Reviews",
+            calculator: "Calculator",
+            faq: "FAQ",
             contact: "Contact",
             hire: "Let's Talk"
         },
@@ -459,7 +563,42 @@ window.portfolioTranslations = {
             skill2: "HTML5 & Semantic Architecture",
             skill3: "CSS3 (Flexbox, Grid, Animations)",
             skill4: "JavaScript (Vanilla ES6+, DOM)",
-            skill5: "Responsive & Mobile-First Design"
+            skill5: "Responsive & Mobile-First Design",
+
+            timelineTitle: "Career & Experience Timeline",
+            timelineDesc: "A 5+ year journey of consistent growth, high-stakes design deliveries, and engineering excellence.",
+
+            tl1Period: "2024 — Present",
+            tl1Role: "Senior UI/UX Designer & Frontend Freelancer",
+            tl1Place: "Remote & International Clients",
+            tl1Desc: "Crafting bespoke design systems, high-converting web applications, and modular Vanilla JS frontends for Fintech, SaaS, and E-Commerce clients worldwide.",
+            tl1Tag1: "Figma Design System",
+            tl1Tag2: "High-Converting UI",
+            tl1Tag3: "Performance Optimization",
+
+            tl2Period: "2022 — 2024",
+            tl2Role: "Lead UI/UX Designer (Product Design)",
+            tl2Place: "Digital Products Studio",
+            tl2Desc: "Spearheaded user research, interactive wireframing, and design systems for enterprise CRM/ERP dashboards, mobile banking suites, and logistics platforms.",
+            tl2Tag1: "UX Research",
+            tl2Tag2: "Interactive Prototyping",
+            tl2Tag3: "Design Tokens",
+
+            tl3Period: "2021 — 2022",
+            tl3Role: "Frontend Web Developer",
+            tl3Place: "Web Development Agency",
+            tl3Desc: "Translated complex Figma prototypes into pixel-perfect, accessible, and responsive production websites using semantic HTML5, modern CSS3, and vanilla JavaScript.",
+            tl3Tag1: "Pixel Perfect",
+            tl3Tag2: "Mobile First",
+            tl3Tag3: "Clean Vanilla JS",
+
+            tl4Period: "2019 — 2021",
+            tl4Role: "UI Design & Web Fundamentals",
+            tl4Place: "Career Kickoff & Practice",
+            tl4Desc: "Immersed in user psychology, visual hierarchy, typography, and web standards while delivering early freelance client projects with top ratings.",
+            tl4Tag1: "Visual Design",
+            tl4Tag2: "Wireframing",
+            tl4Tag3: "Web Standards"
         },
         portfolio: {
             subtitle: "Portfolio",
@@ -516,6 +655,71 @@ window.portfolioTranslations = {
             card3Author: "Bobur Mansurov",
             card3Role: "Head of Operations, Smart Delivery Logistics",
             card3Project: "Smart Delivery Express"
+        },
+        calculator: {
+            subtitle: "Cost Estimator",
+            title: "Estimate Your Project Budget",
+            desc: "Select your project type, scope, and desired features — get an instant, transparent estimate of timeline and pricing.",
+
+            step1Title: "1. Select Project Type",
+            typeUi: "UI/UX Design",
+            typeUiDesc: "Figma clickable prototype, user flow & complete UI kit",
+            typeWeb: "Website / Landing Page",
+            typeWebDesc: "Design + clean HTML5, CSS3 & Vanilla JS frontend",
+            typeEcom: "E-Commerce / Web App",
+            typeEcomDesc: "Online store or high-complexity corporate portal",
+            typeMobile: "Mobile App Design",
+            typeMobileDesc: "Modern iOS & Android mobile UI/UX and prototypes",
+
+            step2Title: "2. Scope of Pages / Screens",
+            scale1: "1 - 3 Pages (Starter)",
+            scale2: "4 - 7 Pages (Standard)",
+            scale3: "8 - 15 Pages (Advanced)",
+            scale4: "16+ Pages (Enterprise)",
+
+            step3Title: "3. Additional Features & Extras",
+            optResponsive: "Responsive Mobile-First (Seamless adaptation across all devices)",
+            optResponsiveBadge: "Included",
+            optTheme: "Dark & Light Luxury Mode (Bespoke theme toggle)",
+            optAnimations: "Interactive Animations & Micro-Interactions",
+            optDesignSystem: "Figma Design System (Reusable component library)",
+            optMultilang: "Multilingual Support (Instant EN / UZ / RU language switcher)",
+            optSpeed: "Performance Tuning & Core Web Vitals Optimization",
+
+            summaryTitle: "Estimate Summary",
+            summaryType: "Project Type:",
+            summaryScale: "Scope:",
+            summaryExtras: "Selected Extras:",
+            summaryExtrasNone: "No extras selected",
+            summaryEstTime: "Estimated Timeline:",
+            summaryEstPrice: "Estimated Budget:",
+            daysSuffix: "days",
+            orderBtn: "Order With This Estimate",
+            guarantee: "100% transparent pricing and free initial consultation",
+            subjectPrefix: "Project Estimate:"
+        },
+        faq: {
+            subtitle: "FAQ",
+            title: "Frequently Asked Questions",
+            desc: "Clear, transparent answers to the most common questions before launching a collaboration.",
+
+            q1: "How does the payment process work?",
+            a1: "Standard milestones: a 50% upfront deposit to initiate discovery and architecture, and the remaining 50% upon final delivery and complete client sign-off. For enterprise systems, phased milestones can be arranged. Payment is accepted via bank transfer, credit card, or international remittance.",
+
+            q2: "Are revision rounds included for design and code?",
+            a2: "Yes, absolutely! Each development and design phase includes 2–3 iterative revision rounds free of charge. Because we validate wireframes and prototypes at every step, unexpected revisions are kept to a minimum.",
+
+            q3: "Do you only provide design, or can you code the full website too?",
+            a3: "I provide both seamlessly! You can hire me solely for Figma UI/UX design (developer-ready with full specs) or for an end-to-end delivery combining design with clean, accessible semantic HTML5, CSS3, and Vanilla JavaScript frontend engineering.",
+
+            q4: "How long does a typical project take from start to finish?",
+            a4: "Timeline scales with project complexity: focused landing pages take 4–7 business days, while full multi-page websites and mobile apps take 10–20 days. Fast-track express delivery is available for time-sensitive deadlines upon request.",
+
+            q5: "Do you offer post-launch technical support?",
+            a5: "Yes! Every completed project includes 14 to 30 days of guaranteed complimentary technical support covering hosting setup, domain configuration, and quick minor adjustments.",
+
+            q6: "What do you need from me to get started?",
+            a6: "A brief summary of your core business goals, target audience, preferred visual references (if any), and brand assets like logos or copy. If you don't have these yet, we will define and structure everything together during our initial kickoff call."
         },
         contact: {
             subtitle: "Get In Touch",

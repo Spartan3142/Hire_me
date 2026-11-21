@@ -381,7 +381,216 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ============================================
-    // 6. ALOQA FORMASI VA CHIROYLI MODAL OYNA (Success Modal)
+    // 6. LOYIHA NARXI KALKULYATORI (CALCULATOR CONTROLLER)
+    // ============================================
+    const calcTypeCards = document.querySelectorAll('.calc-type-card');
+    const calcScalePills = document.querySelectorAll('.calc-scale-pill');
+    const calcExtraItems = document.querySelectorAll('.calc-extra-item');
+
+    const calcSummaryType = document.querySelector('#calcSummaryType');
+    const calcSummaryScale = document.querySelector('#calcSummaryScale');
+    const calcSummaryExtras = document.querySelector('#calcSummaryExtras');
+    const calcTimeText = document.querySelector('#calcTimeText');
+    const calcPriceRange = document.querySelector('#calcPriceRange');
+    const calcOrderBtn = document.querySelector('#calcOrderBtn');
+
+    let currentCalculatedData = {
+        typeName: 'UI/UX Dizayn',
+        scaleName: '1 - 3 sahifa',
+        extrasList: ['Responsive', 'Dark/Light'],
+        timeline: '7 - 10 kun',
+        priceRange: '$240 — $380'
+    };
+
+    function updateCalculator() {
+        const lang = (typeof currentLang !== 'undefined') ? currentLang : 'uz';
+        const dict = (window.portfolioTranslations && window.portfolioTranslations[lang]) ? window.portfolioTranslations[lang] : null;
+
+        // Tanlangan loyiha turi
+        const activeTypeCard = document.querySelector('.calc-type-card.is-selected') || calcTypeCards[0];
+        const baseMin = activeTypeCard ? parseInt(activeTypeCard.getAttribute('data-base-min') || '180', 10) : 180;
+        const baseMax = activeTypeCard ? parseInt(activeTypeCard.getAttribute('data-base-max') || '320', 10) : 320;
+        const daysMin = activeTypeCard ? parseInt(activeTypeCard.getAttribute('data-days-min') || '5', 10) : 5;
+        const daysMax = activeTypeCard ? parseInt(activeTypeCard.getAttribute('data-days-max') || '8', 10) : 8;
+        const typeKey = activeTypeCard ? activeTypeCard.getAttribute('data-type') : 'ui';
+
+        let typeName = activeTypeCard ? (activeTypeCard.querySelector('.calc-type-name')?.textContent || 'UI/UX Dizayn') : 'UI/UX Dizayn';
+        if (dict && dict.calculator) {
+            if (typeKey === 'ui') typeName = dict.calculator.typeUi;
+            else if (typeKey === 'web') typeName = dict.calculator.typeWeb;
+            else if (typeKey === 'ecom') typeName = dict.calculator.typeEcom;
+            else if (typeKey === 'mobile') typeName = dict.calculator.typeMobile;
+        }
+
+        // Tanlangan hajm / sahifalar
+        const activeScalePill = document.querySelector('.calc-scale-pill.is-selected') || calcScalePills[0];
+        const scaleMult = activeScalePill ? parseFloat(activeScalePill.getAttribute('data-mult') || '1.0') : 1.0;
+        const timeMult = activeScalePill ? parseFloat(activeScalePill.getAttribute('data-time-mult') || '1.0') : 1.0;
+        const scaleId = activeScalePill ? activeScalePill.getAttribute('data-scale') : '1';
+
+        let scaleName = activeScalePill ? activeScalePill.textContent.trim() : '1 - 3 sahifa';
+        if (dict && dict.calculator && dict.calculator[`scale${scaleId}`]) {
+            scaleName = dict.calculator[`scale${scaleId}`];
+        }
+
+        // Tanlangan qo'shimchalar
+        let extrasCost = 0;
+        let extrasDays = 0;
+        const selectedExtrasText = [];
+
+        calcExtraItems.forEach(item => {
+            if (item.classList.contains('is-checked')) {
+                const cost = parseInt(item.getAttribute('data-cost') || '0', 10);
+                const days = parseInt(item.getAttribute('data-days') || '0', 10);
+                const extraKey = item.getAttribute('data-extra');
+                extrasCost += cost;
+                extrasDays += days;
+
+                const textSpan = item.querySelector('.calc-extra-text');
+                const label = textSpan ? textSpan.textContent.trim() : extraKey;
+                selectedExtrasText.push(label);
+            }
+        });
+
+        // Yakuniy narx va muddat hisobi
+        const finalMinPrice = Math.round((baseMin * scaleMult + extrasCost) / 10) * 10;
+        const finalMaxPrice = Math.round((baseMax * scaleMult + extrasCost * 1.1) / 10) * 10;
+        const finalMinDays = Math.round(daysMin * timeMult + extrasDays);
+        const finalMaxDays = Math.round(daysMax * timeMult + extrasDays);
+
+        const daysSuffix = (dict && dict.calculator && dict.calculator.daysSuffix) ? dict.calculator.daysSuffix : 'kun';
+        const formattedTime = `${finalMinDays} - ${finalMaxDays} ${daysSuffix}`;
+        const formattedPrice = `$${finalMinPrice} — $${finalMaxPrice}`;
+
+        currentCalculatedData = {
+            typeName,
+            scaleName,
+            extrasList: selectedExtrasText,
+            timeline: formattedTime,
+            priceRange: formattedPrice
+        };
+
+        if (calcSummaryType) calcSummaryType.textContent = typeName;
+        if (calcSummaryScale) calcSummaryScale.textContent = scaleName;
+        if (calcTimeText) calcTimeText.textContent = formattedTime;
+        if (calcPriceRange) calcPriceRange.textContent = formattedPrice;
+
+        if (calcSummaryExtras) {
+            calcSummaryExtras.innerHTML = '';
+            if (selectedExtrasText.length === 0) {
+                const emptySpan = document.createElement('span');
+                emptySpan.style.color = 'var(--color-text-dim)';
+                emptySpan.style.fontSize = '0.78rem';
+                emptySpan.textContent = dict && dict.calculator ? dict.calculator.summaryExtrasNone : 'Tanlanmagan';
+                calcSummaryExtras.appendChild(emptySpan);
+            } else {
+                selectedExtrasText.forEach(name => {
+                    const tag = document.createElement('span');
+                    tag.className = 'calc-extra-tag';
+                    tag.textContent = name.length > 24 ? name.substring(0, 22) + '...' : name;
+                    calcSummaryExtras.appendChild(tag);
+                });
+            }
+        }
+    }
+
+    calcTypeCards.forEach(card => {
+        card.addEventListener('click', () => {
+            calcTypeCards.forEach(c => c.classList.remove('is-selected'));
+            card.classList.add('is-selected');
+            updateCalculator();
+        });
+    });
+
+    calcScalePills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            calcScalePills.forEach(p => p.classList.remove('is-selected'));
+            pill.classList.add('is-selected');
+            updateCalculator();
+        });
+    });
+
+    calcExtraItems.forEach(item => {
+        item.addEventListener('click', () => {
+            if (item.getAttribute('data-fixed') === 'true') return;
+            item.classList.toggle('is-checked');
+            updateCalculator();
+        });
+    });
+
+    if (calcOrderBtn) {
+        calcOrderBtn.addEventListener('click', () => {
+            const subjectInput = document.querySelector('#userSubject');
+            const messageInput = document.querySelector('#userMessage');
+            const contactSection = document.querySelector('#contact');
+            const lang = (typeof currentLang !== 'undefined') ? currentLang : 'uz';
+            const dict = (window.portfolioTranslations && window.portfolioTranslations[lang]) ? window.portfolioTranslations[lang] : null;
+
+            const prefix = dict && dict.calculator && dict.calculator.subjectPrefix ? dict.calculator.subjectPrefix : 'Loyiha hisobi:';
+
+            if (subjectInput) {
+                subjectInput.value = `${prefix} ${currentCalculatedData.typeName} (${currentCalculatedData.scaleName})`;
+            }
+
+            if (messageInput) {
+                const extrasStr = currentCalculatedData.extrasList.join(', ');
+                const labelType = dict && dict.calculator ? dict.calculator.summaryType : 'Loyiha turi:';
+                const labelScale = dict && dict.calculator ? dict.calculator.summaryScale : 'Hajm:';
+                const labelExtras = dict && dict.calculator ? dict.calculator.summaryExtras : 'Qo\'shimchalar:';
+                const labelPrice = dict && dict.calculator ? dict.calculator.summaryEstPrice : 'Taxminiy byudjet:';
+                const labelTime = dict && dict.calculator ? dict.calculator.summaryEstTime : 'Muddat:';
+
+                messageInput.value = `Salom! Men kalkulyatorda quyidagi parametrlarni hisobladim:\n\n` +
+                    `• ${labelType} ${currentCalculatedData.typeName}\n` +
+                    `• ${labelScale} ${currentCalculatedData.scaleName}\n` +
+                    `• ${labelExtras} ${extrasStr || 'Standart'}\n` +
+                    `• ${labelPrice} ${currentCalculatedData.priceRange}\n` +
+                    `• ${labelTime} ${currentCalculatedData.timeline}\n\n` +
+                    `Loyiha tafsilotlarini muhokama qilishimiz mumkinmi?`;
+            }
+
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => {
+                    const nameInput = document.querySelector('#userName');
+                    if (nameInput) nameInput.focus();
+                }, 600);
+            }
+        });
+    }
+
+    // ============================================
+    // 7. FAQ ACCORDION CONTROLLER
+    // ============================================
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const header = item.querySelector('.faq-header');
+        if (header) {
+            header.addEventListener('click', () => {
+                const isOpen = item.classList.contains('is-open');
+
+                // Boshqa barcha ochiq savollarni yopish (yagona akkordeon effekti)
+                faqItems.forEach(other => {
+                    if (other !== item) {
+                        other.classList.remove('is-open');
+                        const otherHeader = other.querySelector('.faq-header');
+                        if (otherHeader) otherHeader.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                if (isOpen) {
+                    item.classList.remove('is-open');
+                    header.setAttribute('aria-expanded', 'false');
+                } else {
+                    item.classList.add('is-open');
+                    header.setAttribute('aria-expanded', 'true');
+                }
+            });
+        }
+    });
+
+    // ============================================
+    // 8. ALOQA FORMASI VA CHIROYLI MODAL OYNA (Success Modal)
     // ============================================
     const contactForm = document.querySelector('#contactForm');
     const successModal = document.querySelector('#successModal');
@@ -583,6 +792,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Agar Case Study modal ochiq bo'lsa, uni ham yangi til bo'yicha darhol yangilash
         if (activeCaseStudyId && typeof renderCaseStudy === 'function') {
             renderCaseStudy(activeCaseStudyId);
+        }
+
+        // Kalkulyator hisobini yangi til bo'yicha yangilash
+        if (typeof updateCalculator === 'function') {
+            updateCalculator();
         }
     }
 
