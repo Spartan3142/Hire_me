@@ -6,13 +6,15 @@
 window.portfolioTranslations = {
     uz: {
         meta: {
-            title: "Portfolio - Kimsanov Diyorbek | UI/UX Dizayner"
+            title: "Portfolio - Kimsanov Diyorbek | UI/UX Dizayner & Frontend Dasturchi"
         },
         nav: {
             home: "Bosh sahifa",
             services: "Xizmatlar",
+            process: "Jarayon",
             about: "Men haqimda",
             portfolio: "Portfolio",
+            testimonials: "Sharhlar",
             contact: "Bog'lanish",
             hire: "Hamkorlik"
         },
@@ -76,6 +78,30 @@ window.portfolioTranslations = {
             orderBtn: "Ushbu xizmatga buyurtma berish",
             orderSubjectPrefix: "Xizmat:"
         },
+        process: {
+            subtitle: "Ish Jarayoni",
+            title: "G'oyadan Mukammal Natijagacha",
+            desc: "Har bir loyihani aniq bosqichlar, zamonaviy metodologiya va yuqori sifat standartlari asosida amalga oshiraman.",
+            step1Num: "01",
+            step1Title: "Brifing & Tadqiqot",
+            step1Desc: "Biznes maqsadlari, mijoz auditoriyasi va raqobatchilarni tahlil qilib, loyihaning aniq texnik talablarini belgilayman.",
+            step1Tag: "Natija: Mindmap & Brif",
+
+            step2Num: "02",
+            step2Title: "Wireframe & Prototip",
+            step2Desc: "Sahifa tuzilishi, navigatsiya va asosiy bloklar arxitekturasini loyihalab, dastlabki interaktiv prototip yarataman.",
+            step2Tag: "Natija: Clickable Wireframe",
+
+            step3Num: "03",
+            step3Title: "UI Dizayn & Tizim",
+            step3Desc: "Ranglar uyg'unligi, zamonaviy tipografika, mikro-animatsiyalar va qayta ishlatiluvchi dizayn komponentlarini ishlab chiqaman.",
+            step3Tag: "Natija: Pixel-Perfect Figma",
+
+            step4Num: "04",
+            step4Title: "Frontend & Testlash",
+            step4Desc: "Dizaynni toza semantik kod, yuqori tezlik va to'liq mobil moslashuvchanlik bilan brauzerda ishga tushiraman.",
+            step4Tag: "Natija: Tayyor Jonli Sayt"
+        },
         about: {
             subtitle: "Tanishuv",
             title: "Men Haqimda",
@@ -138,6 +164,26 @@ window.portfolioTranslations = {
             viewProject: "Batafsil ko'rish",
             projectSubjectPrefix: "Loyiha:"
         },
+        testimonials: {
+            subtitle: "Mijozlar Fikri",
+            title: "Hamkorlar Nima Deyishadi?",
+            desc: "Birgalikda amalga oshirilgan loyihalar va sifatli hamkorlik natijasida olingan samimiy sharhlar.",
+            
+            card1Quote: "Diyorbek bilan banking ilovamiz dizayni ustida ishladik. Uning foydalanuvchi tajribasiga (UX) bo'lgan chuqur e'tibori va Figma'dagi toza ishlashi tufayli yangi mijozlar ro'yxatdan o'tishi 35% ga oshdi. Katta mahorat!",
+            card1Author: "Jasur Rahimov",
+            card1Role: "Co-Founder & CEO, FintechPay",
+            card1Project: "Fintech Analytics Dashboard",
+
+            card2Quote: "Saytimiz frontendini juda qisqa muddatda, birorta xatosiz va pixel-perfect darajasida topshirdi. Ayniqsa mobil qurilmalardagi tezligi va moslashuvchanligi hayratda qoldirdi. Doimiy hamkorimizga aylandi.",
+            card2Author: "Elena Vasileva",
+            card2Role: "Head of Product, LuxMart E-Commerce",
+            card2Project: "Modern E-Commerce Store",
+
+            card3Quote: "Murakkab yetkazib berish boshqaruv panelini shu qadar oddiy va tushunarli qilib loyihaladiki, kuryerlarimiz va dispetcherlarimiz 1 kunda tizimga to'liq o'rganishdi. Ishiga juda mas'uliyatli mutaxassis.",
+            card3Author: "Bobur Mansurov",
+            card3Role: "Operatsion Direktor, Smart Delivery Logistics",
+            card3Project: "Smart Delivery Express"
+        },
         contact: {
             subtitle: "Aloqa",
             title: "Keling, Birgalikda Ishlaymiz!",
@@ -161,6 +207,20 @@ window.portfolioTranslations = {
             formSubmitting: "Yuborilmoqda...",
             formErrorAlert: "Kechirasiz, xabarni yuborishda xatolik yuz berdi. Iltimos, to'g'ridan-to'g'ri ferganafergana66@gmail.com manziliga yozing."
         },
+        caseModal: {
+            closeLabel: "Yopish",
+            clientLabel: "Mijoz:",
+            durationLabel: "Muddat:",
+            roleLabel: "Rol:",
+            overviewTitle: "Loyiha haqida",
+            problemTitle: "Muammo & Vazifa",
+            solutionTitle: "Yechim & Natija",
+            metricsTitle: "Asosiy Ko'rsatkichlar",
+            techTitle: "Ishlatilgan Texnologiyalar",
+            orderSimilarBtn: "Ushbu loyihaga o'xshash buyurtma berish",
+            liveDemoBtn: "Jonli ko'rish",
+            closeBtn: "Yopish"
+        },
         modal: {
             titlePrefix: "Rahmat,",
             defaultFriend: "Do'stim",
@@ -171,6 +231,110 @@ window.portfolioTranslations = {
         footer: {
             copyright: "© 2026 <strong>Diyorbek Kimsanov</strong>. Barcha huquqlar himoyalangan.",
             contact: "Aloqa:"
+        },
+        caseStudies: {
+            fintech: {
+                title: "Fintech Analytics Dashboard",
+                badge: "UI/UX Dizayn",
+                client: "FintechPay Global",
+                duration: "3 hafta",
+                role: "Product Designer & UX Researcher",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
+                overview: "Bank va moliya platformalari uchun real vaqt rejimidagi tranzaksiyalar, pul oqimlari va analitika ko'rsatkichlarini qulay boshqaruvchi premium web dashboard loyihalandi.",
+                problem: "Mavjud moliya tizimi haddan tashqari ko'p jadvallar bilan to'lib ketgan, yangi foydalanuvchilar balans va pul o'tkazmalari bo'limini topishda qiyinchilikka duch kelayotgan edi.",
+                solution: "Figma'da modulli karta tizimi va intuitiv vizual grafiklar yaratildi. Tungi va kunduzgi rejim (Dark & Light UI) to'liq qo'llanildi va foydalanuvchi yo'li (User Flow) soddalashtirildi.",
+                metrics: [
+                    { value: "+35%", label: "Onboarding konversiyasi" },
+                    { value: "-45%", label: "Tranzaksiya bajarish vaqti" },
+                    { value: "98.5%", label: "Foydalanuvchilar qoniqishi" }
+                ],
+                tools: ["Figma", "Design Tokens", "Wireframing", "Interactive Prototype", "Dark Mode UI"]
+            },
+            ecommerce: {
+                title: "Modern E-Commerce Market",
+                badge: "Frontend Dasturlash",
+                client: "LuxMart Retail",
+                duration: "4 hafta",
+                role: "Lead Frontend Developer",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
+                overview: "Zamonaviy kiyim-kechak va elektronika savdosi uchun yaratilgan ultra-tezkor onlayn do'kon veb-sayti. Semantik HTML5, CSS Grid va toza Vanilla JS bilan noldan ishlab chiqildi.",
+                problem: "Eski savdo sayti og'ir kutubxonalar tufayli sekin yuklanar (4.8 soniya) va mobil telefonlarda xarid jarayonida mijozlarning 60% savatchani tashlab ketar edi.",
+                solution: "Hech qanday og'ir freymvorksiz toza JavaScript va yengil CSS3 animatsiyalari yordamida yuklanish tezligi 1.2 soniyaga tushirildi. Savatcha va to'lov jarayoni 2 qadamga qisqartirildi.",
+                metrics: [
+                    { value: "1.2s", label: "Sahifa yuklanish tezligi" },
+                    { value: "+42%", label: "Mobil savdo hajmi" },
+                    { value: "100/100", label: "Google PageSpeed ko'rsatkichi" }
+                ],
+                tools: ["HTML5", "CSS3 / Grid", "Vanilla JS (ES6+)", "Local Storage", "Responsive Design"]
+            },
+            delivery: {
+                title: "Smart Delivery Express",
+                badge: "Mobil Ilova Dizayni",
+                client: "Express Logistics LLC",
+                duration: "2.5 hafta",
+                role: "Lead Mobile UX/UI Designer",
+                image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop",
+                overview: "Shaharlararo tezkor yetkazib berish xizmati uchun qulay jonli xarita, kuryer holatini kuzatish va bir bosishda buyurtma berish imkoniyatiga ega mobil ilova.",
+                problem: "Mijozlar buyurtma hozir qayerda ekanligini ko'ra olmas, dispetcherlar bilan telefon orqali doimiy aloqa mijozlarni charchatib qo'ygan edi.",
+                solution: "Jonli GPS kuzatuv ekrani, yorqin status xabarnomalari va kuryer bilan tezkor chat interfeysi loyihalash orqali qo'ng'iroqlar soni 70% ga kamaytirildi.",
+                metrics: [
+                    { value: "-70%", label: "Qo'ng'iroqlar markazi yuki" },
+                    { value: "4.9★", label: "App Store & Play Market reytingi" },
+                    { value: "10k+", label: "Kunlik faol foydalanuvchilar" }
+                ],
+                tools: ["Figma Mobile UI", "iOS Human Interface", "Material You", "Micro-interactions"]
+            },
+            crypto: {
+                title: "Web3 & Crypto Platform",
+                badge: "Veb-sayt & Landing",
+                client: "Nexus Web3 Protocol",
+                duration: "2 hafta",
+                role: "UI/UX & Creative Developer",
+                image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1200&auto=format&fit=crop",
+                overview: "DeFi investitsiyalar va kripto hamyonlar integratsiyasini namoyish etuvchi zamonaviy dark luxury landing sahifa.",
+                problem: "Kriptovalyuta atamalari va murakkab tokenomika yangi investorlarni cho'chitib, konversiya darajasi past edi.",
+                solution: "Interaktiv 3D uslubdagi neon vizuallar, interaktiv ROI kalkulyatori va sodda vizual sxemalar orqali ma'lumotlar o'rganishga oson holatga keltirildi.",
+                metrics: [
+                    { value: "+55%", label: "Landing konversiya o'sishi" },
+                    { value: "$2.4M+", label: "Birinchi haftadagi jalb qilingan mablag'" },
+                    { value: "3.5 daqiqa", label: "Sahifada o'rtacha qolish vaqti" }
+                ],
+                tools: ["Figma", "HTML5 Canvas", "CSS Neon Glow", "Vanilla JavaScript", "Web3 UI"]
+            },
+            architecture: {
+                title: "Arxitektura & Interior Studio",
+                badge: "UI/UX & Portfolio",
+                client: "Atelier Arch & Design",
+                duration: "3 hafta",
+                role: "Brand & Web Designer",
+                image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
+                overview: "Premium toifadagi arxitektura byurosi uchun minimalist, keng formatli fotosuratlarga asoslangan nufuzli ko'rgazma veb-sayti.",
+                problem: "Mijozning avvalgi sayti juda og'ir va loyihalarning go'zalligini to'liq ko'rsatib bera olmas edi, bu esa qimmatbaho shartnomalarni yo'qotishga olib kelardi.",
+                solution: "Shveytsariya tipografika maktabiga asoslangan minimalist editorial layout, silliq scroll effektlari va to'liq ekranli loyiha galereyasi yaratildi.",
+                metrics: [
+                    { value: "+80%", label: "Yangi premium so'rovlar" },
+                    { value: "4.8/5", label: "Estetik dizayn bahosi" },
+                    { value: "100%", label: "Mobil moslashuvchanlik" }
+                ],
+                tools: ["Minimalist UI", "Editorial Typography", "Full-width Gallery", "CSS Smooth Scroll"]
+            },
+            fittrack: {
+                title: "FitTrack Health & Sports",
+                badge: "Mobil Ilova Dizayni",
+                client: "FitLife Global Labs",
+                duration: "3 hafta",
+                role: "Senior UI/UX Designer",
+                image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=1200&auto=format&fit=crop",
+                overview: "Kundalik mashg'ulotlar, qadamlar soni va ovqatlanish kaloriyalarini kuzatib boruvchi yorqin va qiziqarli sport ilovasi.",
+                problem: "Mavjud fitnes ilovalari foydalanuvchilar uchun juda murakkab bo'lib, odatda 1 haftadan so'ng odamlar mashqlarni qayd etishni tashlab qo'yishardi.",
+                solution: "O'yinlashtirish (gamification) elementlari, yutuq nishonlari va 1 ta bosishda mashqni boshlash imkoniyatini beruvchi yorqin widgetlar tizimi kiritildi.",
+                metrics: [
+                    { value: "+65%", label: "30 kunlik retention (saqlanish)" },
+                    { value: "15 daqiqa", label: "O'rtacha kunlik foydalanish" },
+                    { value: "4.9★", label: "App Store foydalanuvchi bahosi" }
+                ],
+                tools: ["Gamification UX", "Figma Design System", "Dark & Light Mode", "Habit Tracker UI"]
+            }
         }
     },
     en: {
@@ -180,8 +344,10 @@ window.portfolioTranslations = {
         nav: {
             home: "Home",
             services: "Services",
+            process: "Process",
             about: "About",
             portfolio: "Portfolio",
+            testimonials: "Reviews",
             contact: "Contact",
             hire: "Let's Talk"
         },
@@ -245,6 +411,30 @@ window.portfolioTranslations = {
             orderBtn: "Order This Service",
             orderSubjectPrefix: "Service:"
         },
+        process: {
+            subtitle: "My Workflow",
+            title: "From Concept to Final Product",
+            desc: "Guiding every project through structured milestones to ensure exceptional quality, rigorous UX thinking, and timely delivery.",
+            step1Num: "01",
+            step1Title: "Discovery & Research",
+            step1Desc: "Deep-diving into business requirements, user psychology, competitor strengths, and outlining a crystal-clear technical brief.",
+            step1Tag: "Deliverable: Mindmap & UX Brief",
+
+            step2Num: "02",
+            step2Title: "Wireframing & Prototype",
+            step2Desc: "Architecting site structure, content hierarchy, and crafting interactive clickable wireframes in Figma to validate usability.",
+            step2Tag: "Deliverable: Clickable Prototype",
+
+            step3Num: "03",
+            step3Title: "UI Design & Systems",
+            step3Desc: "Building aesthetic, on-brand visual design, responsive layouts, design tokens, micro-interactions, and a complete UI kit.",
+            step3Tag: "Deliverable: Pixel-Perfect Figma File",
+
+            step4Num: "04",
+            step4Title: "Frontend & Deployment",
+            step4Desc: "Bringing the design to life with clean semantic code, lightning-fast performance, cross-browser audits, and final launch.",
+            step4Tag: "Deliverable: Production-Ready Code"
+        },
         about: {
             subtitle: "About Me",
             title: "Who I Am",
@@ -304,8 +494,28 @@ window.portfolioTranslations = {
             proj6Title: "FitTrack Health & Sports",
             proj6Desc: "A clean fitness companion app with intuitive workout logs, calorie analytics, and weekly progress charts.",
 
-            viewProject: "View Project",
+            viewProject: "View Case Study",
             projectSubjectPrefix: "Project:"
+        },
+        testimonials: {
+            subtitle: "Testimonials",
+            title: "What Clients & Partners Say",
+            desc: "Genuine feedback from founders, product managers, and business owners I have had the privilege to work with.",
+            
+            card1Quote: "Diyorbek completely revamped our mobile banking interface. His sharp user empathy and clean Figma design system directly helped us increase our user onboarding conversion by 35%. Highly recommended!",
+            card1Author: "Jasur Rahimov",
+            card1Role: "Co-Founder & CEO, FintechPay",
+            card1Project: "Fintech Analytics Dashboard",
+
+            card2Quote: "Delivered our e-commerce frontend ahead of schedule, pixel-perfect and totally bug-free. Mobile speed and adaptive layout are phenomenal. He is now our go-to frontend partner.",
+            card2Author: "Elena Vasileva",
+            card2Role: "Head of Product, LuxMart E-Commerce",
+            card2Project: "Modern E-Commerce Store",
+
+            card3Quote: "He transformed our convoluted logistics control panel into an interface so clean that our dispatchers mastered it within 24 hours. Highly dependable and proactive professional.",
+            card3Author: "Bobur Mansurov",
+            card3Role: "Head of Operations, Smart Delivery Logistics",
+            card3Project: "Smart Delivery Express"
         },
         contact: {
             subtitle: "Get In Touch",
@@ -330,6 +540,20 @@ window.portfolioTranslations = {
             formSubmitting: "Sending...",
             formErrorAlert: "Sorry, an error occurred while sending your message. Please reach out directly to ferganafergana66@gmail.com."
         },
+        caseModal: {
+            closeLabel: "Close",
+            clientLabel: "Client:",
+            durationLabel: "Duration:",
+            roleLabel: "Role:",
+            overviewTitle: "Project Overview",
+            problemTitle: "The Challenge",
+            solutionTitle: "The Solution & Execution",
+            metricsTitle: "Key Results & Impact",
+            techTitle: "Tech Stack & Tools",
+            orderSimilarBtn: "Order a Similar Project",
+            liveDemoBtn: "Live Preview",
+            closeBtn: "Close"
+        },
         modal: {
             titlePrefix: "Thank you,",
             defaultFriend: "Friend",
@@ -340,6 +564,110 @@ window.portfolioTranslations = {
         footer: {
             copyright: "© 2026 <strong>Diyorbek Kimsanov</strong>. All rights reserved.",
             contact: "Contact:"
+        },
+        caseStudies: {
+            fintech: {
+                title: "Fintech Analytics Dashboard",
+                badge: "UI/UX Design",
+                client: "FintechPay Global",
+                duration: "3 weeks",
+                role: "Product Designer & UX Researcher",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
+                overview: "A premium analytics web dashboard engineered for banking platforms to track high-volume transactions, cash flows, and customer retention metrics in real time.",
+                problem: "The legacy portal was cluttered with dense tables, causing users to get lost when navigating between transfer approvals and account balance statements.",
+                solution: "Designed a modular card system with intuitive data visualizations in Figma. Built complete Dark and Light theme palettes and streamlined the primary user flows.",
+                metrics: [
+                    { value: "+35%", label: "Onboarding Conversion" },
+                    { value: "-45%", label: "Time-to-Transfer" },
+                    { value: "98.5%", label: "User Satisfaction" }
+                ],
+                tools: ["Figma", "Design Tokens", "Wireframing", "Interactive Prototype", "Dark Mode UI"]
+            },
+            ecommerce: {
+                title: "Modern E-Commerce Market",
+                badge: "Frontend Development",
+                client: "LuxMart Retail",
+                duration: "4 weeks",
+                role: "Lead Frontend Developer",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
+                overview: "An ultra-fast, customized e-commerce web application built from scratch with pure HTML5, CSS Grid, and modular Vanilla JS for apparel and tech retail.",
+                problem: "The client's previous website suffered from a 4.8-second initial load time due to heavy libraries, resulting in a 60% mobile cart abandonment rate.",
+                solution: "Eliminated bulky frameworks, implemented lightweight CSS3 animations, and engineered an instant 2-step checkout flow with local storage persistence.",
+                metrics: [
+                    { value: "1.2s", label: "Page Load Speed" },
+                    { value: "+42%", label: "Mobile Sales Volume" },
+                    { value: "100/100", label: "Google PageSpeed Score" }
+                ],
+                tools: ["HTML5", "CSS3 / Grid", "Vanilla JS (ES6+)", "Local Storage", "Responsive Design"]
+            },
+            delivery: {
+                title: "Smart Delivery Express",
+                badge: "Mobile UI Design",
+                client: "Express Logistics LLC",
+                duration: "2.5 weeks",
+                role: "Lead Mobile UX/UI Designer",
+                image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop",
+                overview: "A sleek cross-platform courier delivery mobile app featuring live GPS route tracking, dynamic order status cards, and one-tap reordering.",
+                problem: "Customers were unable to pinpoint courier location during peak hours, causing a surge in support phone calls and driver delays.",
+                solution: "Created an interactive live tracking interface with clear micro-animations and status milestones, reducing support inquiry volume by 70%.",
+                metrics: [
+                    { value: "-70%", label: "Call Center Load" },
+                    { value: "4.9★", label: "App Store & Google Play Rating" },
+                    { value: "10k+", label: "Daily Active Users" }
+                ],
+                tools: ["Figma Mobile UI", "iOS Human Interface", "Material You", "Micro-interactions"]
+            },
+            crypto: {
+                title: "Web3 & Crypto Platform",
+                badge: "Website & Landing",
+                client: "Nexus Web3 Protocol",
+                duration: "2 weeks",
+                role: "UI/UX & Creative Developer",
+                image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1200&auto=format&fit=crop",
+                overview: "A high-conversion dark luxury landing page designed to introduce retail investors to a decentralized yield protocol with real-time analytics.",
+                problem: "Complex crypto terminology and convoluted tokenomics were causing early user drop-off and low wallet connection rates.",
+                solution: "Engineered subtle 3D-styled neon visuals, an interactive yield estimator, and step-by-step visual guides that made the onboarding effortless.",
+                metrics: [
+                    { value: "+55%", label: "Landing Page Conversion" },
+                    { value: "$2.4M+", label: "Total Value Locked (Wk 1)" },
+                    { value: "3.5 min", label: "Average Session Duration" }
+                ],
+                tools: ["Figma", "HTML5 Canvas", "CSS Neon Glow", "Vanilla JavaScript", "Web3 UI"]
+            },
+            architecture: {
+                title: "Architecture & Interior Studio",
+                badge: "UI/UX & Portfolio",
+                client: "Atelier Arch & Design",
+                duration: "3 weeks",
+                role: "Brand & Web Designer",
+                image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
+                overview: "An editorial, high-end portfolio website crafted for an award-winning architecture and luxury interior design studio.",
+                problem: "The client's previous website felt generic and failed to convey the premium craftsmanship of their multi-million dollar architectural commissions.",
+                solution: "Built a Swiss-inspired editorial layout featuring asymmetric typography, fullscreen high-res imagery, and whisper-smooth transitions.",
+                metrics: [
+                    { value: "+80%", label: "High-Ticket Client Inquiries" },
+                    { value: "4.8/5", label: "Aesthetics Evaluation" },
+                    { value: "100%", label: "Fluid Screen Responsiveness" }
+                ],
+                tools: ["Minimalist UI", "Editorial Typography", "Full-width Gallery", "CSS Smooth Scroll"]
+            },
+            fittrack: {
+                title: "FitTrack Health & Sports",
+                badge: "Mobile App Design",
+                client: "FitLife Global Labs",
+                duration: "3 weeks",
+                role: "Senior UI/UX Designer",
+                image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=1200&auto=format&fit=crop",
+                overview: "A habit-forming health companion mobile app featuring customized workout routines, calorie telemetry, and gamified personal streaks.",
+                problem: "Most fitness apps overwhelmed users with too many input forms, leading to an 80% user drop-off after the first 7 days.",
+                solution: "Designed rapid one-tap exercise logging, celebratory progress badges, and interactive widgets that made daily tracking engaging.",
+                metrics: [
+                    { value: "+65%", label: "30-Day User Retention" },
+                    { value: "15 min", label: "Average Daily Engagement" },
+                    { value: "4.9★", label: "App Store User Rating" }
+                ],
+                tools: ["Gamification UX", "Figma Design System", "Dark & Light Mode", "Habit Tracker UI"]
+            }
         }
     }
 };

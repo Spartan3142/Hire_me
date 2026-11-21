@@ -221,26 +221,152 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // ============================================
+    // 5. REAL PROJECT CASE STUDY MODAL BOSHQARUVI
+    // ============================================
+    const caseStudyModal = document.querySelector('#caseStudyModal');
+    const caseModalCloseBtn = document.querySelector('#caseModalCloseBtn');
+    const caseModalFooterCloseBtn = document.querySelector('#caseModalFooterCloseBtn');
+    const caseModalOrderBtn = document.querySelector('#caseModalOrderBtn');
+    const caseModalDemoBtn = document.querySelector('#caseModalDemoBtn');
+    const caseModalImage = document.querySelector('#caseModalImage');
+    const caseModalBadge = document.querySelector('#caseModalBadge');
+    const caseModalTitle = document.querySelector('#caseModalTitle');
+    const caseModalClient = document.querySelector('#caseModalClient');
+    const caseModalDuration = document.querySelector('#caseModalDuration');
+    const caseModalRole = document.querySelector('#caseModalRole');
+    const caseModalMetrics = document.querySelector('#caseModalMetrics');
+    const caseModalOverview = document.querySelector('#caseModalOverview');
+    const caseModalProblem = document.querySelector('#caseModalProblem');
+    const caseModalSolution = document.querySelector('#caseModalSolution');
+    const caseModalTools = document.querySelector('#caseModalTools');
+    let activeCaseStudyId = null;
+
+    function renderCaseStudy(projectId) {
+        if (!projectId) return;
+        const lang = (typeof currentLang !== 'undefined') ? currentLang : 'uz';
+        const dict = (window.portfolioTranslations && window.portfolioTranslations[lang]) ? window.portfolioTranslations[lang] : null;
+        if (!dict || !dict.caseStudies || !dict.caseStudies[projectId]) return;
+
+        const data = dict.caseStudies[projectId];
+
+        if (caseModalImage) {
+            caseModalImage.src = data.image || data.img || '';
+            caseModalImage.alt = data.title || 'Project Preview';
+        }
+        if (caseModalBadge) caseModalBadge.textContent = data.badge;
+        if (caseModalTitle) caseModalTitle.textContent = data.title;
+        if (caseModalClient) caseModalClient.textContent = data.client;
+        if (caseModalDuration) caseModalDuration.textContent = data.duration;
+        if (caseModalRole) caseModalRole.textContent = data.role;
+        if (caseModalOverview) caseModalOverview.textContent = data.overview;
+        if (caseModalProblem) caseModalProblem.textContent = data.problem;
+        if (caseModalSolution) caseModalSolution.textContent = data.solution;
+
+        // Metrikalarni dinamik render qilish
+        if (caseModalMetrics) {
+            caseModalMetrics.innerHTML = '';
+            if (Array.isArray(data.metrics)) {
+                data.metrics.forEach(m => {
+                    const box = document.createElement('div');
+                    box.className = 'case-metric-box';
+                    box.innerHTML = `
+                        <div class="case-metric-val">${m.value}</div>
+                        <div class="case-metric-label">${m.label}</div>
+                    `;
+                    caseModalMetrics.appendChild(box);
+                });
+            }
+        }
+
+        // Texnologiya teglarini render qilish
+        if (caseModalTools) {
+            caseModalTools.innerHTML = '';
+            if (Array.isArray(data.tools)) {
+                data.tools.forEach(tool => {
+                    const tag = document.createElement('span');
+                    tag.className = 'case-tool-tag';
+                    tag.textContent = tool;
+                    caseModalTools.appendChild(tag);
+                });
+            }
+        }
+
+        // Jonli demo ssilkasini belgilash
+        if (caseModalDemoBtn) {
+            caseModalDemoBtn.href = data.demoUrl || data.image || '#';
+        }
+    }
+
+    function openCaseStudy(projectId) {
+        activeCaseStudyId = projectId;
+        renderCaseStudy(projectId);
+        if (caseStudyModal) {
+            caseStudyModal.classList.add('is-open');
+            caseStudyModal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeCaseStudy() {
+        activeCaseStudyId = null;
+        if (caseStudyModal) {
+            caseStudyModal.classList.remove('is-open');
+            caseStudyModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+    }
+
     // Loyiha "Batafsil ko'rish" tugmalari
     const projectLinkBtns = document.querySelectorAll('.project-link-btn');
     projectLinkBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            const projName = btn.getAttribute('data-project-name') || 'Loyiha';
-            const contactSection = document.querySelector('#contact');
-            const subjectInput = document.querySelector('#userSubject');
-            const lang = (typeof currentLang !== 'undefined') ? currentLang : 'uz';
-            const dict = (window.portfolioTranslations && window.portfolioTranslations[lang]) ? window.portfolioTranslations[lang] : null;
-            const prefix = dict && dict.portfolio && dict.portfolio.projectSubjectPrefix ? dict.portfolio.projectSubjectPrefix : 'Loyiha:';
-
-            if (subjectInput) {
-                subjectInput.value = `${prefix} ${projName}`;
-            }
-            if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
+            const projectId = btn.getAttribute('data-project-id');
+            if (projectId) {
+                openCaseStudy(projectId);
             }
         });
     });
+
+    // Case Study modalni yopish hodisalari
+    if (caseModalCloseBtn) caseModalCloseBtn.addEventListener('click', closeCaseStudy);
+    if (caseModalFooterCloseBtn) caseModalFooterCloseBtn.addEventListener('click', closeCaseStudy);
+
+    if (caseStudyModal) {
+        caseStudyModal.addEventListener('click', (e) => {
+            if (e.target === caseStudyModal) {
+                closeCaseStudy();
+            }
+        });
+    }
+
+    // Modal ichidagi buyurtma berish tugmasi
+    if (caseModalOrderBtn) {
+        caseModalOrderBtn.addEventListener('click', () => {
+            const lang = (typeof currentLang !== 'undefined') ? currentLang : 'uz';
+            const dict = (window.portfolioTranslations && window.portfolioTranslations[lang]) ? window.portfolioTranslations[lang] : null;
+            const prefix = dict && dict.portfolio && dict.portfolio.projectSubjectPrefix ? dict.portfolio.projectSubjectPrefix : 'Loyiha:';
+            const projTitle = caseModalTitle ? caseModalTitle.textContent : 'Loyiha';
+
+            const subjectInput = document.querySelector('#userSubject');
+            const contactSection = document.querySelector('#contact');
+
+            if (subjectInput) {
+                subjectInput.value = `${prefix} ${projTitle}`;
+            }
+
+            closeCaseStudy();
+
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => {
+                    const nameInput = document.querySelector('#userName');
+                    if (nameInput) nameInput.focus();
+                }, 600);
+            }
+        });
+    }
 
     const downloadCvBtn = document.querySelector('#downloadCvBtn');
     if (downloadCvBtn) {
@@ -363,8 +489,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Escape tugmasi bosilganda yopish
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && successModal && successModal.classList.contains('is-open')) {
-            closeModal();
+        if (e.key === 'Escape') {
+            if (caseStudyModal && caseStudyModal.classList.contains('is-open')) {
+                closeCaseStudy();
+            }
+            if (successModal && successModal.classList.contains('is-open')) {
+                closeModal();
+            }
         }
     });
 
@@ -447,6 +578,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const activeCard = document.querySelector('.service-card.is-active') || document.querySelector('.service-card');
         if (activeCard && typeof updateServiceDetail === 'function') {
             updateServiceDetail(activeCard);
+        }
+
+        // Agar Case Study modal ochiq bo'lsa, uni ham yangi til bo'yicha darhol yangilash
+        if (activeCaseStudyId && typeof renderCaseStudy === 'function') {
+            renderCaseStudy(activeCaseStudyId);
         }
     }
 
