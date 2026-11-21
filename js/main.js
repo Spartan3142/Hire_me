@@ -9,6 +9,69 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Portfolio va Xizmatlar bo\'limi muvaffaqiyatli ishga tushdi!');
 
     // ============================================
+    // 0. PRELOADER (Sahifa yuklash animatsiyasi)
+    // ============================================
+    const preloader = document.querySelector('#preloader');
+    const preloaderBar = document.querySelector('#preloaderBar');
+
+    const dismissPreloader = () => {
+        if (preloaderBar) preloaderBar.style.width = '100%';
+        setTimeout(() => {
+            if (preloader) {
+                preloader.classList.add('is-hidden');
+                // Sahifa siyrilish blokirovkasini olib tashlash
+                document.body.style.overflow = '';
+            }
+        }, 300);
+    };
+
+    // Preloader progress simulyatsiyasi
+    if (preloader && preloaderBar) {
+        document.body.style.overflow = 'hidden';
+        let progress = 0;
+        const preloaderInterval = setInterval(() => {
+            progress += Math.random() * 18 + 6;
+            if (progress > 90) progress = 90;
+            preloaderBar.style.width = progress + '%';
+        }, 150);
+
+        window.addEventListener('load', () => {
+            clearInterval(preloaderInterval);
+            dismissPreloader();
+        });
+
+        // Xavfsizlik uchun 4 soniyadan keyin majburan yopish
+        setTimeout(() => {
+            clearInterval(preloaderInterval);
+            dismissPreloader();
+        }, 4000);
+    }
+
+    // ============================================
+    // 0.1 SCROLL-REVEAL (Kirish animatsiyalari)
+    // ============================================
+    const revealElements = document.querySelectorAll('.reveal');
+
+    if ('IntersectionObserver' in window && revealElements.length > 0) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-revealed');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    } else {
+        // Qo'llab-quvvatlanmasa, darhol ko'rsatish
+        revealElements.forEach(el => el.classList.add('is-revealed'));
+    }
+
+    // ============================================
     // 1. NAVIGATSIYA (Sticky Navbar, Smooth Scroll va ScrollSpy)
     // ============================================
     const headerNav = document.querySelector('.header-nav');

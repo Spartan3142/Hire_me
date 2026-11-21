@@ -48,6 +48,16 @@
 </head>
 <body>
 
+    <!-- PRELOADER (Premium sahifa yuklanish animatsiyasi) -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <div class="preloader-inner">
+            <div class="preloader-logo">DK</div>
+            <div class="preloader-bar-track">
+                <div class="preloader-bar-fill" id="preloaderBar"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Asosiy ilova romi (Dizayndagi qora karta) -->
     <main class="app-frame">
 
@@ -189,7 +199,7 @@
         <section class="services-section" id="services">
 
             <!-- Sarlavha qismi -->
-            <div class="section-header">
+            <div class="section-header reveal">
                 <span class="section-subtitle" data-i18n="services.subtitle">Xizmatlarim</span>
                 <h2 class="section-title" data-i18n="services.title">Sizga Qanday Yordam Bera Olaman?</h2>
                 <p class="section-desc" data-i18n="services.desc">
@@ -198,7 +208,7 @@
             </div>
 
             <!-- Interaktiv Filtrlash Tugmalari -->
-            <div class="services-filter">
+            <div class="services-filter reveal">
                 <button class="filter-btn active" data-filter="all" data-i18n="services.filterAll">Barchasi</button>
                 <button class="filter-btn" data-filter="design" data-i18n="services.filterDesign">UI/UX Dizayn</button>
                 <button class="filter-btn" data-filter="dev" data-i18n="services.filterDev">Frontend Dasturlash</button>
@@ -206,7 +216,7 @@
             </div>
 
             <!-- Xizmatlar Kartochkalari Gridi -->
-            <div class="services-grid">
+            <div class="services-grid reveal">
 
                 <!-- 1. UI/UX Dizayn -->
                 <div class="service-card is-active" data-category="design" 
@@ -323,7 +333,7 @@
 
         <!-- 4. ISH JARAYONI (HOW I WORK / PROCESS) BO'LIMI -->
         <section class="process-section" id="process">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <span class="section-subtitle" data-i18n="process.subtitle">Ish Jarayoni</span>
                 <h2 class="section-title" data-i18n="process.title">G'oyadan Mukammal Natijagacha</h2>
                 <p class="section-desc" data-i18n="process.desc">
@@ -331,7 +341,7 @@
                 </p>
             </div>
 
-            <div class="process-grid">
+            <div class="process-grid reveal">
                 <!-- 1-bosqich: Brifing & Tadqiqot -->
                 <div class="process-card">
                     <div class="process-card-top">
@@ -410,7 +420,7 @@
         <section class="about-section" id="about">
 
             <!-- Sarlavha qismi -->
-            <div class="section-header">
+            <div class="section-header reveal">
                 <span class="section-subtitle" data-i18n="about.subtitle">Tanishuv</span>
                 <h2 class="section-title" data-i18n="about.title">Men Haqimda</h2>
                 <p class="section-desc" data-i18n="about.desc">
@@ -418,7 +428,7 @@
                 </p>
             </div>
 
-            <div class="about-grid">
+            <div class="about-grid reveal">
 
                 <!-- Chap ustun: Hikoya va qisqa ma'lumotlar -->
                 <div class="about-story">
@@ -618,7 +628,7 @@
         <section class="portfolio-section" id="portfolio">
 
             <!-- Sarlavha qismi -->
-            <div class="section-header">
+            <div class="section-header reveal">
                 <span class="section-subtitle" data-i18n="portfolio.subtitle">Portfolio</span>
                 <h2 class="section-title" data-i18n="portfolio.title">Bajarilgan So'nggi Loyihalar</h2>
                 <p class="section-desc" data-i18n="portfolio.desc">
@@ -635,7 +645,7 @@
             </div>
 
             <!-- Loyihalar Gridi -->
-            <div class="projects-grid">
+            <div class="projects-grid reveal">
 
                 <!-- 1-Loyiha: Fintech Dashboard -->
                 <div class="project-card" data-pcategory="ui" data-project-id="fintech">
@@ -645,6 +655,7 @@
                             src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=700&auto=format&fit=crop" 
                             alt="Fintech Dashboard UI" 
                             class="project-img"
+                            loading="lazy"
                         >
                     </div>
                     <div class="project-content">
@@ -674,6 +685,7 @@
                             src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=700&auto=format&fit=crop" 
                             alt="E-Commerce veb-sayti" 
                             class="project-img"
+                            loading="lazy"
                         >
                     </div>
                     <div class="project-content">
@@ -703,6 +715,7 @@
                             src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=700&auto=format&fit=crop" 
                             alt="Smart Delivery Mobile App" 
                             class="project-img"
+                            loading="lazy"
                         >
                     </div>
                     <div class="project-content">
@@ -732,6 +745,7 @@
                             src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=700&auto=format&fit=crop" 
                             alt="Crypto & Web3 Platform" 
                             class="project-img"
+                            loading="lazy"
                         >
                     </div>
                     <div class="project-content">
@@ -761,6 +775,7 @@
                             src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=700&auto=format&fit=crop" 
                             alt="Arxitektura portfoliosi veb-sayti" 
                             class="project-img"
+                            loading="lazy"
                         >
                     </div>
                     <div class="project-content">
@@ -790,6 +805,7 @@
                             src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=700&auto=format&fit=crop" 
                             alt="Fitness Tracker App" 
                             class="project-img"
+                            loading="lazy"
                         >
                     </div>
                     <div class="project-content">
@@ -817,7 +833,7 @@
 
         <!-- 6. MIJOZLAR SHARHLARI (TESTIMONIALS / REVIEWS) BO'LIMI -->
         <section class="testimonials-section" id="testimonials">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <span class="section-subtitle" data-i18n="testimonials.subtitle">Mijozlar Fikri</span>
                 <h2 class="section-title" data-i18n="testimonials.title">Hamkorlar Nima Deyishadi?</h2>
                 <p class="section-desc" data-i18n="testimonials.desc">
@@ -825,7 +841,7 @@
                 </p>
             </div>
 
-            <div class="testimonials-grid">
+            <div class="testimonials-grid reveal">
                 <!-- 1-Sharh -->
                 <div class="testimonial-card">
                     <div>
@@ -950,7 +966,7 @@
 
         <!-- 7. LOYIHA NARXI KALKULYATORI (PROJECT COST ESTIMATOR) -->
         <section class="calculator-section" id="calculator">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <span class="section-subtitle" data-i18n="calculator.subtitle">Narx Kalkulyatori</span>
                 <h2 class="section-title" data-i18n="calculator.title">Loyiha Byudjetini Hisoblang</h2>
                 <p class="section-desc" data-i18n="calculator.desc">
@@ -958,7 +974,7 @@
                 </p>
             </div>
 
-            <div class="calculator-grid">
+            <div class="calculator-grid reveal">
                 <!-- Chap ustun: Tanlovlar (Options) -->
                 <div class="calc-options">
                     
@@ -1152,7 +1168,7 @@
 
         <!-- 8. KO'P BERILADIGAN SAVOLLAR (FAQ ACCORDION) -->
         <section class="faq-section" id="faq">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <span class="section-subtitle" data-i18n="faq.subtitle">FAQ</span>
                 <h2 class="section-title" data-i18n="faq.title">Ko'p Beriladigan Savollar</h2>
                 <p class="section-desc" data-i18n="faq.desc">
@@ -1160,7 +1176,7 @@
                 </p>
             </div>
 
-            <div class="faq-accordion" id="faqAccordion">
+            <div class="faq-accordion reveal" id="faqAccordion">
                 <!-- Savol 1 (Boshida ochiq holatda) -->
                 <div class="faq-item is-open">
                     <button class="faq-header" type="button" aria-expanded="true">
@@ -1257,7 +1273,7 @@
         <section class="contact-section" id="contact">
 
             <!-- Sarlavha qismi -->
-            <div class="section-header">
+            <div class="section-header reveal">
                 <span class="section-subtitle" data-i18n="contact.subtitle">Aloqa</span>
                 <h2 class="section-title" data-i18n="contact.title">Keling, Birgalikda Ishlaymiz!</h2>
                 <p class="section-desc" data-i18n="contact.desc">
@@ -1265,7 +1281,7 @@
                 </p>
             </div>
 
-            <div class="contact-grid">
+            <div class="contact-grid reveal">
 
                 <!-- Chap ustun: Aloqa ma'lumotlari -->
                 <div class="contact-info-panel">
