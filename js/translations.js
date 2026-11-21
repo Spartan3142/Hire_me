@@ -334,6 +334,22 @@ window.portfolioTranslations = {
             copyright: "© 2026 <strong>Diyorbek Kimsanov</strong>. Barcha huquqlar himoyalangan.",
             contact: "Aloqa:"
         },
+        quickConnect: {
+            btnText: "Tezkor aloqa",
+            popTitle: "Men bilan bog'lanish",
+            statusText: "Onlayn • O'rtacha javob vaqti: 15 daqiqa",
+            telegramLabel: "Telegram orqali yozish",
+            telegramHint: "@diyorbek_dev",
+            whatsappLabel: "WhatsApp orqali yozish",
+            whatsappHint: "+998 90 123 45 67",
+            emailLabel: "Elektron pochta",
+            emailHint: "ferganafergana66@gmail.com",
+            phoneLabel: "Telefon qo'ng'irog'i",
+            phoneHint: "+998 90 123 45 67"
+        },
+        scrollTop: {
+            ariaLabel: "Yuqoriga qaytish"
+        },
         caseStudies: {
             fintech: {
                 title: "Fintech Analytics Dashboard",
@@ -768,6 +784,22 @@ window.portfolioTranslations = {
         footer: {
             copyright: "© 2026 <strong>Diyorbek Kimsanov</strong>. All rights reserved.",
             contact: "Contact:"
+        },
+        quickConnect: {
+            btnText: "Quick Chat",
+            popTitle: "Direct Connection",
+            statusText: "Online now • Avg. reply time: 15 mins",
+            telegramLabel: "Chat on Telegram",
+            telegramHint: "@diyorbek_dev",
+            whatsappLabel: "Chat on WhatsApp",
+            whatsappHint: "+998 90 123 45 67",
+            emailLabel: "Send an Email",
+            emailHint: "ferganafergana66@gmail.com",
+            phoneLabel: "Direct Phone Call",
+            phoneHint: "+998 90 123 45 67"
+        },
+        scrollTop: {
+            ariaLabel: "Back to Top"
         },
         caseStudies: {
             fintech: {

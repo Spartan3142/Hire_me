@@ -4,6 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Kimsanov Diyorbek | UI/UX Dizayner</title>
+    <meta name="description" content="Kimsanov Diyorbek — Professional UI/UX dizayner va Frontend dasturchi. Zamonaviy veb-saytlar, mobil ilovalar, CRM va Figma dizayn tizimlari.">
+    <meta name="keywords" content="UI/UX dizayn, veb dizayn, frontend dasturchi, portfolio, Figma, Diyorbek Kimsanov, Toshkent, O'zbekiston">
+    <meta name="author" content="Diyorbek Kimsanov">
+    <meta name="theme-color" content="#121212" id="metaThemeColor">
+
+    <!-- Open Graph / Facebook / Telegram / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://diyorbek.uz/">
+    <meta property="og:title" content="Portfolio - Kimsanov Diyorbek | UI/UX Dizayner">
+    <meta property="og:description" content="Kimsanov Diyorbek — Professional UI/UX dizayner va Frontend dasturchi. Zamonaviy raqamli mahsulotlar va interfeyslar portfoliysi.">
+    <meta property="og:image" content="assets/images/profile-portrait.png">
+    <meta property="og:locale" content="uz_UZ">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://diyorbek.uz/">
+    <meta name="twitter:title" content="Portfolio - Kimsanov Diyorbek | UI/UX Dizayner">
+    <meta name="twitter:description" content="Kimsanov Diyorbek — Professional UI/UX dizayner va Frontend dasturchi. Zamonaviy raqamli mahsulotlar va interfeyslar portfoliysi.">
+    <meta name="twitter:image" content="assets/images/profile-portrait.png">
+
     <!-- Sayt belgisi (Favicon) -->
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <!-- Mavzu va til miltillashining oldini olish (Anti-FOUC) -->
@@ -75,6 +95,11 @@
                     </svg>
                 </button>
                 <button class="btn-nav" id="navHireBtn" data-i18n="nav.hire">Hamkorlik</button>
+                <button class="nav-hamburger" id="navHamburgerBtn" type="button" aria-label="Menyu" aria-expanded="false">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
             </div>
         </header>
 
@@ -127,15 +152,15 @@
                 <!-- Statistika Card (Pastki qism) -->
                 <div class="stats-card">
                     <div class="stat-item">
-                        <span class="stat-number" data-i18n="hero.statExpNum">5+</span>
+                        <span class="stat-number" data-target="5" data-i18n="hero.statExpNum">5+</span>
                         <span class="stat-label" data-i18n="hero.statExpLabel">Yillik tajriba</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number" data-i18n="hero.statProjNum">20+</span>
+                        <span class="stat-number" data-target="20" data-i18n="hero.statProjNum">20+</span>
                         <span class="stat-label" data-i18n="hero.statProjLabel">Bajarilgan loyiha</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number" data-i18n="hero.statClientsNum">80+</span>
+                        <span class="stat-number" data-target="80" data-i18n="hero.statClientsNum">80+</span>
                         <span class="stat-label" data-i18n="hero.statClientsLabel">Mamnun mijozlar</span>
                     </div>
                 </div>
@@ -1463,6 +1488,116 @@
             <button class="modal-btn" id="modalOkBtn" data-i18n="modal.okBtn">Tushunarli</button>
         </div>
     </div>
+
+    <!-- 9. MOBIL DRAWER MENYU (Mobile Navigation Drawer) -->
+    <div class="mobile-drawer-overlay" id="mobileDrawerOverlay" aria-hidden="true">
+        <div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Mobil Menyu">
+            <div class="drawer-header">
+                <a href="#home" class="drawer-logo" id="drawerLogo">
+                    <img src="assets/images/logo.png" alt="DK Logo">
+                    <span>Diyorbek Kimsanov</span>
+                </a>
+                <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Menyuni yopish">
+                    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <nav class="drawer-nav-list">
+                <a href="#home" class="drawer-nav-link active" data-i18n="nav.home">Bosh sahifa</a>
+                <a href="#services" class="drawer-nav-link" data-i18n="nav.services">Xizmatlar</a>
+                <a href="#process" class="drawer-nav-link" data-i18n="nav.process">Jarayon</a>
+                <a href="#about" class="drawer-nav-link" data-i18n="nav.about">Men haqimda</a>
+                <a href="#portfolio" class="drawer-nav-link" data-i18n="nav.portfolio">Portfolio</a>
+                <a href="#testimonials" class="drawer-nav-link" data-i18n="nav.testimonials">Sharhlar</a>
+                <a href="#calculator" class="drawer-nav-link" data-i18n="nav.calculator">Kalkulyator</a>
+                <a href="#faq" class="drawer-nav-link" data-i18n="nav.faq">FAQ</a>
+                <a href="#contact" class="drawer-nav-link" data-i18n="nav.contact">Bog'lanish</a>
+            </nav>
+            <div class="drawer-footer">
+                <button class="drawer-hire-btn" id="drawerHireBtn" data-i18n="nav.hire">Hamkorlik</button>
+                <div class="drawer-socials">
+                    <a href="#" class="drawer-social-btn" aria-label="Instagram" title="Instagram">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="#" class="drawer-social-btn" aria-label="LinkedIn" title="LinkedIn">
+                        <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    <a href="#" class="drawer-social-btn" aria-label="Behance" title="Behance">
+                        <svg viewBox="0 0 24 24"><path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-4.116 0-6.625-3.003-6.625-7 0-4.141 2.656-7 6.625-7 4.19 0 6.375 2.875 6.375 7 0 .546-.051 1.066-.082 1.25h-9.918c.121 2.387 1.766 3.75 3.984 3.75 1.547 0 2.59-.625 3.141-1.75l1.6-.25zm-8.828-4.5h6.703c-.156-2.125-1.484-3.5-3.359-3.5-2.016 0-3.188 1.375-3.344 3.5zm-9.898 7.5h-5v-16h5.875c3.547 0 5.125 1.797 5.125 4.375 0 1.625-.797 2.859-2.078 3.531 1.703.672 2.578 2.156 2.578 4.094 0 2.688-1.781 4-6.5 4zm-2.5-9.5h2.875c1.453 0 2.422-.609 2.422-1.875 0-1.188-.891-1.75-2.297-1.75h-3v3.625zm0 7h3.125c1.781 0 2.875-.766 2.875-2.172 0-1.391-1.078-2.203-2.906-2.203h-3.094v4.375z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 10. TEZKOR ALOQA WIDGETI (Floating Quick Connect) -->
+    <div class="quick-connect-widget" id="quickConnectWidget">
+        <div class="quick-connect-popover" id="quickConnectPopover" role="dialog" aria-modal="false" aria-label="Tezkor bog'lanish">
+            <div class="quick-pop-header">
+                <span class="quick-pop-title" data-i18n="quickConnect.popTitle">Men bilan bog'lanish</span>
+                <button class="quick-pop-close" id="quickPopCloseBtn" aria-label="Yopish">
+                    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div class="quick-pop-status">
+                <span class="quick-connect-pulse"></span>
+                <span data-i18n="quickConnect.statusText">Onlayn • O'rtacha javob vaqti: 15 daqiqa</span>
+            </div>
+            <div class="quick-pop-list">
+                <a href="https://t.me/diyorbek_dev" target="_blank" rel="noopener noreferrer" class="quick-pop-link">
+                    <span class="quick-pop-icon tg">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .37z"/></svg>
+                    </span>
+                    <span class="quick-pop-link-info">
+                        <span class="quick-pop-link-name" data-i18n="quickConnect.telegramLabel">Telegram orqali yozish</span>
+                        <span class="quick-pop-link-hint" data-i18n="quickConnect.telegramHint">@diyorbek_dev</span>
+                    </span>
+                </a>
+                <a href="https://wa.me/998901234567" target="_blank" rel="noopener noreferrer" class="quick-pop-link">
+                    <span class="quick-pop-icon wa">
+                        <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm0 18.15c-1.49 0-2.95-.4-4.23-1.16l-.3-.18-3.13.82.83-3.05-.2-.31a8.188 8.188 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.181 8.181 0 0 1 2.41 5.83c.01 4.54-3.69 8.23-8.23 8.23zm4.52-6.17c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.44.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.57c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.48-.29z"/></svg>
+                    </span>
+                    <span class="quick-pop-link-info">
+                        <span class="quick-pop-link-name" data-i18n="quickConnect.whatsappLabel">WhatsApp orqali yozish</span>
+                        <span class="quick-pop-link-hint" data-i18n="quickConnect.whatsappHint">+998 90 123 45 67</span>
+                    </span>
+                </a>
+                <a href="mailto:ferganafergana66@gmail.com" class="quick-pop-link">
+                    <span class="quick-pop-icon mail">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </span>
+                    <span class="quick-pop-link-info">
+                        <span class="quick-pop-link-name" data-i18n="quickConnect.emailLabel">Elektron pochta</span>
+                        <span class="quick-pop-link-hint" data-i18n="quickConnect.emailHint">ferganafergana66@gmail.com</span>
+                    </span>
+                </a>
+                <a href="tel:+998901234567" class="quick-pop-link">
+                    <span class="quick-pop-icon phone">
+                        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    </span>
+                    <span class="quick-pop-link-info">
+                        <span class="quick-pop-link-name" data-i18n="quickConnect.phoneLabel">Telefon qo'ng'irog'i</span>
+                        <span class="quick-pop-link-hint" data-i18n="quickConnect.phoneHint">+998 90 123 45 67</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <button class="quick-connect-pill" id="quickConnectPill" type="button" aria-expanded="false" aria-label="Tezkor aloqa">
+            <span class="quick-connect-pulse"></span>
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+            <span class="quick-connect-pill-text" data-i18n="quickConnect.btnText">Tezkor aloqa</span>
+        </button>
+    </div>
+
+    <!-- 11. YUQORIGA QAYTISH TUGMASI (Back to Top with SVG Progress Ring) -->
+    <button class="scroll-top-btn" id="scrollTopBtn" type="button" aria-label="Yuqoriga qaytish">
+        <svg class="scroll-progress-svg" viewBox="0 0 44 44">
+            <circle class="scroll-progress-bg" cx="22" cy="22" r="20"></circle>
+            <circle class="scroll-progress-bar" id="scrollProgressBar" cx="22" cy="22" r="20"></circle>
+        </svg>
+        <svg class="scroll-top-icon" viewBox="0 0 24 24">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
 
     <!-- Tarjima ma'lumotlari -->
     <script src="js/translations.js" defer></script>

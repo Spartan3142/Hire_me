@@ -40,7 +40,142 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Skroll bo'yicha hodisalarni tinglash (Sticky & ScrollSpy)
+    // Mobile Drawer elementlari
+    const navHamburgerBtn = document.querySelector('#navHamburgerBtn');
+    const mobileDrawerOverlay = document.querySelector('#mobileDrawerOverlay');
+    const drawerCloseBtn = document.querySelector('#drawerCloseBtn');
+    const drawerNavLinks = document.querySelectorAll('.drawer-nav-link');
+    const drawerLogo = document.querySelector('#drawerLogo');
+    const drawerHireBtn = document.querySelector('#drawerHireBtn');
+
+    // Yuqoriga qaytish va SVG progress doirasi
+    const scrollTopBtn = document.querySelector('#scrollTopBtn');
+    const scrollProgressBar = document.querySelector('#scrollProgressBar');
+    const SCROLL_CIRCUMFERENCE = 125.6; // 2 * PI * 20
+
+    const updateScrollProgress = (scrollY) => {
+        if (!scrollTopBtn || !scrollProgressBar) return;
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (totalHeight > 0) {
+            const progress = Math.min(Math.max(scrollY / totalHeight, 0), 1);
+            const offset = SCROLL_CIRCUMFERENCE - (SCROLL_CIRCUMFERENCE * progress);
+            scrollProgressBar.style.strokeDashoffset = offset;
+        }
+
+        if (scrollY > 300) {
+            scrollTopBtn.classList.add('is-visible');
+        } else {
+            scrollTopBtn.classList.remove('is-visible');
+        }
+    };
+
+    if (scrollTopBtn) {
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // Mobil Menyuni ochish va yopish
+    const openMobileDrawer = () => {
+        if (mobileDrawerOverlay) {
+            mobileDrawerOverlay.classList.add('is-open');
+            mobileDrawerOverlay.setAttribute('aria-hidden', 'false');
+        }
+        if (navHamburgerBtn) {
+            navHamburgerBtn.classList.add('is-active');
+            navHamburgerBtn.setAttribute('aria-expanded', 'true');
+        }
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeMobileDrawer = () => {
+        if (mobileDrawerOverlay) {
+            mobileDrawerOverlay.classList.remove('is-open');
+            mobileDrawerOverlay.setAttribute('aria-hidden', 'true');
+        }
+        if (navHamburgerBtn) {
+            navHamburgerBtn.classList.remove('is-active');
+            navHamburgerBtn.setAttribute('aria-expanded', 'false');
+        }
+        document.body.style.overflow = '';
+    };
+
+    if (navHamburgerBtn) {
+        navHamburgerBtn.addEventListener('click', () => {
+            const isOpen = mobileDrawerOverlay && mobileDrawerOverlay.classList.contains('is-open');
+            if (isOpen) {
+                closeMobileDrawer();
+            } else {
+                openMobileDrawer();
+            }
+        });
+    }
+
+    if (drawerCloseBtn) {
+        drawerCloseBtn.addEventListener('click', closeMobileDrawer);
+    }
+
+    if (mobileDrawerOverlay) {
+        mobileDrawerOverlay.addEventListener('click', (e) => {
+            if (e.target === mobileDrawerOverlay) {
+                closeMobileDrawer();
+            }
+        });
+    }
+
+    drawerNavLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const targetId = link.getAttribute('href');
+            if (targetId && targetId.startsWith('#')) {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    closeMobileDrawer();
+                    const navHeight = headerNav ? headerNav.offsetHeight : 0;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navHeight - 10;
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 250);
+
+                    drawerNavLinks.forEach(item => item.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            }
+        });
+    });
+
+    if (drawerLogo) {
+        drawerLogo.addEventListener('click', () => {
+            closeMobileDrawer();
+        });
+    }
+
+    if (drawerHireBtn) {
+        drawerHireBtn.addEventListener('click', () => {
+            closeMobileDrawer();
+            const contactSection = document.querySelector('#contact');
+            if (contactSection) {
+                const navHeight = headerNav ? headerNav.offsetHeight : 0;
+                const elementPosition = contactSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - navHeight - 10;
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }, 250);
+            }
+        });
+    }
+
+    // Skroll bo'yicha hodisalarni tinglash (Sticky, ScrollSpy & Progress)
     const handleScroll = () => {
         const scrollY = window.pageYOffset || document.documentElement.scrollTop;
 
@@ -53,7 +188,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // 2. ScrollSpy: Ekranda turgan bo'limni menyuda avtomatik belgilash
+        // 2. Yuqoriga qaytish progress doirasi
+        updateScrollProgress(scrollY);
+
+        // 3. ScrollSpy: Ekranda turgan bo'limni menyularda avtomatik belgilash
         sections.forEach(current => {
             const sectionHeight = current.offsetHeight;
             const sectionTop = current.offsetTop - 140;
@@ -66,12 +204,72 @@ document.addEventListener('DOMContentLoaded', () => {
                         link.classList.add('active');
                     }
                 });
+                drawerNavLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
             }
         });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Dastlabki yuklanishda tekshirish
+
+    // ============================================
+    // ANIMATSIYALI STATISTIKA HISOB LAGICHI (Counters)
+    // ============================================
+    const statsCard = document.querySelector('.stats-card');
+    const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+    let statsAnimated = false;
+
+    const animateCounters = () => {
+        if (statsAnimated) return;
+        statsAnimated = true;
+
+        const duration = 1600; // 1.6 soniya
+        const startTime = performance.now();
+        const easeOutQuad = (t) => t * (2 - t);
+
+        const step = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easedProgress = easeOutQuad(progress);
+
+            statNumbers.forEach(statEl => {
+                const target = parseInt(statEl.getAttribute('data-target'), 10) || 0;
+                const current = Math.floor(easedProgress * target);
+                statEl.textContent = `${current}+`;
+            });
+
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                statNumbers.forEach(statEl => {
+                    const target = statEl.getAttribute('data-target');
+                    statEl.textContent = `${target}+`;
+                });
+            }
+        };
+
+        requestAnimationFrame(step);
+    };
+
+    if ('IntersectionObserver' in window && statsCard) {
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        statsObserver.observe(statsCard);
+    } else {
+        animateCounters();
+    }
 
     // ============================================
     // 2. XIZMATLAR FILTRLASH (Interactive Filter)
@@ -696,7 +894,57 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Escape tugmasi bosilganda yopish
+    // ============================================
+    // TEZKOR ALOQA WIDGETI (Floating Quick Connect)
+    // ============================================
+    const quickConnectWidget = document.querySelector('#quickConnectWidget');
+    const quickConnectPill = document.querySelector('#quickConnectPill');
+    const quickConnectPopover = document.querySelector('#quickConnectPopover');
+    const quickPopCloseBtn = document.querySelector('#quickPopCloseBtn');
+
+    const toggleQuickConnect = () => {
+        if (!quickConnectPopover) return;
+        const isOpen = quickConnectPopover.classList.contains('is-open');
+        if (isOpen) {
+            quickConnectPopover.classList.remove('is-open');
+            if (quickConnectPill) quickConnectPill.setAttribute('aria-expanded', 'false');
+        } else {
+            quickConnectPopover.classList.add('is-open');
+            if (quickConnectPill) quickConnectPill.setAttribute('aria-expanded', 'true');
+        }
+    };
+
+    const closeQuickConnect = () => {
+        if (quickConnectPopover) {
+            quickConnectPopover.classList.remove('is-open');
+        }
+        if (quickConnectPill) {
+            quickConnectPill.setAttribute('aria-expanded', 'false');
+        }
+    };
+
+    if (quickConnectPill) {
+        quickConnectPill.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleQuickConnect();
+        });
+    }
+
+    if (quickPopCloseBtn) {
+        quickPopCloseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeQuickConnect();
+        });
+    }
+
+    // Tashqi joy bosilganda yopish
+    document.addEventListener('click', (e) => {
+        if (quickConnectWidget && !quickConnectWidget.contains(e.target)) {
+            closeQuickConnect();
+        }
+    });
+
+    // Escape tugmasi bosilganda barcha ochiq oynalarni yopish
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             if (caseStudyModal && caseStudyModal.classList.contains('is-open')) {
@@ -705,6 +953,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (successModal && successModal.classList.contains('is-open')) {
                 closeModal();
             }
+            if (mobileDrawerOverlay && mobileDrawerOverlay.classList.contains('is-open')) {
+                closeMobileDrawer();
+            }
+            closeQuickConnect();
         }
     });
 
@@ -714,6 +966,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleBtn = document.querySelector('#themeToggleBtn');
     const rootHtml = document.documentElement;
     const THEME_STORAGE_KEY = 'portfolio_theme';
+    const metaThemeColor = document.querySelector('#metaThemeColor');
+
+    const updateThemeMeta = (theme) => {
+        if (metaThemeColor) {
+            metaThemeColor.setAttribute('content', theme === 'light' ? '#f4f5f8' : '#121212');
+        }
+    };
+
+    // Boshlang'ich meta theme-color ni tekshirish
+    updateThemeMeta(rootHtml.getAttribute('data-theme') || 'dark');
 
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
@@ -722,6 +984,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             rootHtml.setAttribute('data-theme', nextTheme);
             localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+            updateThemeMeta(nextTheme);
         });
     }
 
@@ -797,6 +1060,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Kalkulyator hisobini yangi til bo'yicha yangilash
         if (typeof updateCalculator === 'function') {
             updateCalculator();
+        }
+
+        // Yuqoriga qaytish va tezkor aloqa tugmalari aria-label
+        if (dict.scrollTop && dict.scrollTop.ariaLabel && scrollTopBtn) {
+            scrollTopBtn.setAttribute('aria-label', dict.scrollTop.ariaLabel);
+        }
+        if (dict.quickConnect && dict.quickConnect.btnText && quickConnectPill) {
+            quickConnectPill.setAttribute('aria-label', dict.quickConnect.btnText);
         }
     }
 
