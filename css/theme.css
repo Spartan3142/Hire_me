@@ -2804,3 +2804,295 @@ body,
         animation: none;
     }
 }
+
+
+/* ============================================
+   TESTIMONIALS SLIDER & CAROUSEL
+   ============================================ */
+.testimonials-carousel-wrapper {
+    position: relative;
+    max-width: 860px;
+    margin: var(--spacing-xl) auto 0;
+}
+
+.testimonials-carousel-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-md);
+    padding: 0 4px;
+}
+
+.testimonials-counter-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--color-primary);
+    background: var(--color-stats-bg);
+    border: 1px solid var(--color-stats-border);
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+}
+
+.testimonials-counter-badge .sep {
+    color: var(--color-text-dim);
+    font-weight: 400;
+}
+
+.testimonials-nav-buttons {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.testimonial-arrow-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.testimonial-arrow-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    fill: none;
+    transition: transform 0.2s ease;
+}
+
+.testimonial-arrow-btn:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 107, 0, 0.35);
+}
+
+.testimonial-arrow-btn:active {
+    transform: translateY(0);
+}
+
+.testimonials-track-viewport {
+    overflow: hidden;
+    position: relative;
+    border-radius: var(--radius-md);
+    padding: 4px 0 12px;
+}
+
+.testimonials-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+.testimonials-track .testimonial-card {
+    flex: 0 0 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    min-height: 290px;
+}
+
+.testimonials-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: var(--spacing-lg);
+}
+
+.testimonial-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: var(--radius-full);
+    background: var(--color-divider);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.testimonial-dot:hover {
+    background: var(--color-text-dim);
+}
+
+.testimonial-dot.is-active {
+    width: 26px;
+    background: var(--color-primary);
+    box-shadow: 0 0 12px rgba(255, 107, 0, 0.4);
+}
+
+/* ============================================
+   HERO TYPED TEXT & BLINKING CURSOR
+   ============================================ */
+.hero__title-typed {
+    display: inline-block;
+    color: var(--color-primary);
+    background: linear-gradient(135deg, var(--color-primary) 0%, #ff8c33 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.2s ease;
+}
+
+.hero__cursor {
+    display: inline-block;
+    color: var(--color-primary);
+    font-weight: 300;
+    margin-left: 2px;
+    animation: cursorBlink 0.9s infinite ease-in-out;
+}
+
+@keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0; }
+}
+
+/* ============================================
+   PROJECT CARD 3D TILT & SPECULAR GLARE
+   ============================================ */
+.projects-grid {
+    perspective: 1200px;
+}
+
+.project-card {
+    transform-style: preserve-3d;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.25s ease,
+                border-color 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle 220px at var(--glare-x, 50%) var(--glare-y, 50%),
+        rgba(255, 255, 255, 0.12),
+        transparent 80%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 5;
+}
+
+[data-theme="light"] .project-card::after {
+    background: radial-gradient(
+        circle 220px at var(--glare-x, 50%) var(--glare-y, 50%),
+        rgba(255, 107, 0, 0.12),
+        transparent 80%
+    );
+}
+
+.project-card:hover::after {
+    opacity: 1;
+}
+
+/* ============================================
+   TOAST NOTIFICATION (CV & Success Alerts)
+   ============================================ */
+.toast-notification {
+    position: fixed;
+    bottom: 84px;
+    left: 50%;
+    transform: translateX(-50%) translateY(24px);
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.3s ease;
+}
+
+.toast-notification.is-show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.toast-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--color-frame-bg);
+    border: 1px solid rgba(255, 107, 0, 0.45);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 107, 0, 0.2);
+    padding: 12px 22px;
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+[data-theme="light"] .toast-content {
+    background: #ffffff;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12), 0 0 25px rgba(255, 107, 0, 0.15);
+}
+
+.toast-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.18);
+    color: #10b981;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.toast-icon svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    fill: none;
+}
+
+.toast-message {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-text);
+    white-space: nowrap;
+}
+
+/* ============================================
+   ACCESSIBILITY & FOCUS VISIBLE STATES
+   ============================================ */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--color-primary) !important;
+    outline-offset: 3px !important;
+}
+
+/* Reduced motion adjustments */
+@media (prefers-reduced-motion: reduce) {
+    .hero__cursor {
+        animation: none;
+    }
+    .project-card {
+        transform: none !important;
+        transition: none !important;
+    }
+    .testimonials-track {
+        transition: none !important;
+    }
+}

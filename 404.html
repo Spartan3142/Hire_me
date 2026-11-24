@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Sahifa Topilmadi | Diyorbek Kimsanov</title>
+    <meta name="description" content="404 - Sahifa topilmadi. Kimsanov Diyorbek portfolio saytiga qaytish.">
+    <meta name="theme-color" content="#121212" id="metaThemeColor">
+
+    <!-- Sayt belgisi (Favicon) -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+    <!-- Mavzu va til miltillashining oldini olish (Anti-FOUC) -->
+    <script>
+        (function() {
+            var savedTheme = localStorage.getItem('portfolio_theme');
+            var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+
+            var savedLang = localStorage.getItem('portfolio_lang');
+            if (savedLang) {
+                document.documentElement.setAttribute('lang', savedLang);
+            }
+        })();
+    </script>
+    <!-- Yagona CSS kirish fayli -->
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .error-page-wrapper {
+            min-height: calc(100vh - 160px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .error-code-badge {
+            font-size: clamp(5rem, 15vw, 10rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, #ff8c33 50%, var(--color-text) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+            text-shadow: 0 10px 40px rgba(255, 107, 0, 0.25);
+            animation: float404 4s ease-in-out infinite;
+        }
+
+        @keyframes float404 {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(-8px); }
+        }
+
+        .error-title {
+            font-size: clamp(1.4rem, 4vw, 2.2rem);
+            font-weight: 800;
+            color: var(--color-text);
+            margin-bottom: 14px;
+        }
+
+        .error-desc {
+            max-width: 520px;
+            color: var(--color-text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0 auto 32px;
+        }
+
+        .error-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .error-actions .btn-primary,
+        .error-actions .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: var(--radius-full);
+            font-size: 0.92rem;
+            font-weight: 600;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .error-actions svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2.2;
+            fill: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Asosiy ilova romi -->
+    <main class="app-frame">
+
+        <!-- YUQORI NAVIGATSIYA -->
+        <header class="header-nav">
+            <a href="index.html#home" class="logo" title="Diyorbek Kimsanov - Bosh sahifa">
+                <img src="assets/images/logo.png" alt="DK Monogramma Logo" class="logo-img">
+            </a>
+
+            <div class="header-actions">
+                <!-- Tilni almashtirish -->
+                <div class="lang-switcher" id="langSwitcher" role="group" aria-label="Tilni tanlash / Language selection">
+                    <button type="button" class="lang-btn active" data-lang="uz" aria-label="O'zbek tili">UZ</button>
+                    <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+                </div>
+
+                <!-- Rejim almashtirish -->
+                <button class="theme-toggle" id="themeToggleBtn" type="button" aria-label="Mavzuni almashtirish" title="Yorug' / Qorong'u rejim">
+                    <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="4.5"></circle>
+                        <line x1="12" y1="2" x2="12" y2="4"></line>
+                        <line x1="12" y1="20" x2="12" y2="22"></line>
+                        <line x1="4.93" y1="4.93" x2="6.34" y2="6.34"></line>
+                        <line x1="17.66" y1="17.66" x2="19.07" y2="19.07"></line>
+                        <line x1="2" y1="12" x2="4" y2="12"></line>
+                        <line x1="20" y1="12" x2="22" y2="12"></line>
+                        <line x1="4.93" y1="19.07" x2="6.34" y2="17.66"></line>
+                        <line x1="17.66" y1="6.34" x2="19.07" y2="4.93"></line>
+                    </svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <a href="index.html#contact" class="btn-nav" id="navHireBtn">Hamkorlik</a>
+            </div>
+        </header>
+
+        <!-- 404 ERROR MARKAZIY BO'LIMI -->
+        <section class="error-page-wrapper">
+            <div class="error-code-badge" aria-hidden="true">404</div>
+            <h1 class="error-title" id="errTitle">Sahifa Topilmadi</h1>
+            <p class="error-desc" id="errDesc">
+                Kechirasiz, siz qidirayotgan sahifa mavjud emas, o'chirilgan yoki boshqa manzilga ko'chirilgan.
+            </p>
+            <div class="error-actions">
+                <a href="index.html" class="btn-primary" id="errHomeBtn">
+                    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    <span id="errHomeText">Bosh sahifaga qaytish</span>
+                </a>
+                <a href="index.html#contact" class="btn-outline" id="errContactBtn">
+                    <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    <span id="errContactText">Bog'lanish</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer-bottom" style="text-align: center; padding: 24px; border-top: 1px solid var(--color-divider); font-size: 0.85rem; color: var(--color-text-muted);">
+            © 2026 <strong>Diyorbek Kimsanov</strong>. Barcha huquqlar himoyalangan.
+        </footer>
+    </main>
+
+    <script>
+        (function() {
+            // Theme toggle
+            const themeBtn = document.querySelector('#themeToggleBtn');
+            const root = document.documentElement;
+            const metaTheme = document.querySelector('#metaThemeColor');
+
+            const applyTheme = (theme) => {
+                root.setAttribute('data-theme', theme);
+                localStorage.setItem('portfolio_theme', theme);
+                if (metaTheme) {
+                    metaTheme.setAttribute('content', theme === 'light' ? '#f4f5f8' : '#121212');
+                }
+            };
+
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    const current = root.getAttribute('data-theme') || 'dark';
+                    applyTheme(current === 'light' ? 'dark' : 'light');
+                });
+            }
+
+            // Language toggle
+            const langBtns = document.querySelectorAll('.lang-btn');
+            const errTitle = document.querySelector('#errTitle');
+            const errDesc = document.querySelector('#errDesc');
+            const errHomeText = document.querySelector('#errHomeText');
+            const errContactText = document.querySelector('#errContactText');
+            const navHireBtn = document.querySelector('#navHireBtn');
+
+            const translations = {
+                uz: {
+                    title: "Sahifa Topilmadi",
+                    desc: "Kechirasiz, siz qidirayotgan sahifa mavjud emas, o'chirilgan yoki boshqa manzilga ko'chirilgan.",
+                    home: "Bosh sahifaga qaytish",
+                    contact: "Bog'lanish",
+                    hire: "Hamkorlik"
+                },
+                en: {
+                    title: "Page Not Found",
+                    desc: "Sorry, the page you are looking for does not exist, has been removed, or moved to another URL.",
+                    home: "Back to Home",
+                    contact: "Get In Touch",
+                    hire: "Let's Talk"
+                }
+            };
+
+            const setLanguage = (lang) => {
+                root.setAttribute('lang', lang);
+                localStorage.setItem('portfolio_lang', lang);
+                langBtns.forEach(btn => {
+                    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+                });
+                const t = translations[lang] || translations.uz;
+                if (errTitle) errTitle.textContent = t.title;
+                if (errDesc) errDesc.textContent = t.desc;
+                if (errHomeText) errHomeText.textContent = t.home;
+                if (errContactText) errContactText.textContent = t.contact;
+                if (navHireBtn) navHireBtn.textContent = t.hire;
+            };
+
+            langBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    setLanguage(btn.getAttribute('data-lang'));
+                });
+            });
+
+            const savedLang = localStorage.getItem('portfolio_lang') || 'uz';
+            setLanguage(savedLang);
+        })();
+    </script>
+</body>
+</html>

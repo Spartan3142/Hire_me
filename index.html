@@ -120,7 +120,9 @@
             <div class="hero__content">
                 <p class="hero__greeting" data-i18n="hero.greeting">Salom, men</p>
                 <h2 class="hero__name" data-i18n="hero.name">Diyorbek Kimsanov</h2>
-                <h1 class="hero__title" data-i18n="hero.title">UI/UX dizayner</h1>
+                <h1 class="hero__title">
+                    <span class="hero__title-typed" id="heroTypedText" data-i18n="hero.title">UI/UX dizayner</span><span class="hero__cursor" aria-hidden="true">|</span>
+                </h1>
 
                 <!-- Ijtimoiy tarmoqlar (Sof SVG ikonkalar) -->
                 <div class="hero__socials">
@@ -156,7 +158,7 @@
                 <!-- Tugmalar -->
                 <div class="hero__actions">
                     <button class="btn-primary" id="hireMeBtn" data-i18n="hero.contactBtn">Bog'lanish</button>
-                    <button class="btn-outline" id="downloadCvBtn" data-i18n="hero.cvBtn">CV yuklab olish</button>
+                    <a href="assets/docs/Diyorbek_Kimsanov_CV.pdf" download="Diyorbek_Kimsanov_CV.pdf" class="btn-outline" id="downloadCvBtn" data-i18n="hero.cvBtn">CV yuklab olish</a>
                 </div>
 
                 <!-- Statistika Card (Pastki qism) -->
@@ -841,7 +843,27 @@
                 </p>
             </div>
 
-            <div class="testimonials-grid reveal">
+            <div class="testimonials-carousel-wrapper reveal" id="testimonialsSlider">
+                <!-- Navigatsiya va Slayd hisoblagich -->
+                <div class="testimonials-carousel-nav">
+                    <div class="testimonials-counter-badge" aria-label="Sharhlar hisoblagichi">
+                        <span id="testimonialCurrentNum">01</span>
+                        <span class="sep">/</span>
+                        <span id="testimonialTotalNum">03</span>
+                    </div>
+                    <div class="testimonials-nav-buttons">
+                        <button class="testimonial-arrow-btn prev" id="testimonialPrevBtn" type="button" aria-label="Oldingi sharh">
+                            <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                        </button>
+                        <button class="testimonial-arrow-btn next" id="testimonialNextBtn" type="button" aria-label="Keyingi sharh">
+                            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Slayder treki va kartalari -->
+                <div class="testimonials-track-viewport" id="testimonialsViewport">
+                    <div class="testimonials-track" id="testimonialsTrack">
                 <!-- 1-Sharh -->
                 <div class="testimonial-card">
                     <div>
@@ -960,6 +982,15 @@
                             <p class="testimonial-author-role" data-i18n="testimonials.card3Role">Operatsion Direktor, Smart Delivery Logistics</p>
                         </div>
                     </div>
+                </div>
+                    </div>
+                </div>
+
+                <!-- Nuqtali indikatorlar (Dots) -->
+                <div class="testimonials-dots" id="testimonialsDots" role="tablist" aria-label="Sharhlar navigatsiyasi">
+                    <button class="testimonial-dot is-active" data-index="0" role="tab" aria-selected="true" aria-label="1-sharh"></button>
+                    <button class="testimonial-dot" data-index="1" role="tab" aria-selected="false" aria-label="2-sharh"></button>
+                    <button class="testimonial-dot" data-index="2" role="tab" aria-selected="false" aria-label="3-sharh"></button>
                 </div>
             </div>
         </section>
@@ -1614,6 +1645,16 @@
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </button>
+
+    <!-- 12. TOAST BILDIRISHNOMA (Toast Notification) -->
+    <div class="toast-notification" id="toastNotification" role="status" aria-live="polite">
+        <div class="toast-content">
+            <div class="toast-icon">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <span class="toast-message" id="toastMessage">CV muvaffaqiyatli yuklab olinmoqda...</span>
+        </div>
+    </div>
 
     <!-- Tarjima ma'lumotlari -->
     <script src="js/translations.js" defer></script>

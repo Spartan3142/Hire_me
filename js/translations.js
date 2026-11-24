@@ -24,9 +24,16 @@ window.portfolioTranslations = {
             greeting: "Salom, men",
             name: "Diyorbek Kimsanov",
             title: "UI/UX dizayner",
+            typedRoles: [
+                "UI/UX dizayner",
+                "Frontend dasturchi",
+                "Figma tizimlari mutaxassisi",
+                "Kreativ veb-arxitektor"
+            ],
             contactBtn: "Bog'lanish",
             cvBtn: "CV yuklab olish",
             cvAlert: "Diyorbek Kimsanov - UI/UX & Frontend CV (Rezyume) tez orada taqdim etiladi.",
+            cvToast: "CV muvaffaqiyatli yuklab olinmoqda (PDF)...",
             statExpNum: "5+",
             statExpLabel: "Yillik tajriba",
             statProjNum: "20+",
@@ -205,6 +212,8 @@ window.portfolioTranslations = {
             subtitle: "Mijozlar Fikri",
             title: "Hamkorlar Nima Deyishadi?",
             desc: "Birgalikda amalga oshirilgan loyihalar va sifatli hamkorlik natijasida olingan samimiy sharhlar.",
+            prevBtn: "Oldingi sharh",
+            nextBtn: "Keyingi sharh",
             
             card1Quote: "Diyorbek bilan banking ilovamiz dizayni ustida ishladik. Uning foydalanuvchi tajribasiga (UX) bo'lgan chuqur e'tibori va Figma'dagi toza ishlashi tufayli yangi mijozlar ro'yxatdan o'tishi 35% ga oshdi. Katta mahorat!",
             card1Author: "Jasur Rahimov",
@@ -475,9 +484,16 @@ window.portfolioTranslations = {
             greeting: "Hello, I'm",
             name: "Diyorbek Kimsanov",
             title: "UI/UX Designer",
+            typedRoles: [
+                "UI/UX Designer",
+                "Frontend Developer",
+                "Design Systems Specialist",
+                "Creative Web Architect"
+            ],
             contactBtn: "Get In Touch",
             cvBtn: "Download CV",
             cvAlert: "Diyorbek Kimsanov - UI/UX & Frontend CV (Resume) will be available soon.",
+            cvToast: "Downloading CV resume (PDF)...",
             statExpNum: "5+",
             statExpLabel: "Years Experience",
             statProjNum: "20+",
@@ -656,6 +672,8 @@ window.portfolioTranslations = {
             subtitle: "Testimonials",
             title: "What Clients & Partners Say",
             desc: "Genuine feedback from founders, product managers, and business owners I have had the privilege to work with.",
+            prevBtn: "Previous Review",
+            nextBtn: "Next Review",
             
             card1Quote: "Diyorbek completely revamped our mobile banking interface. His sharp user empathy and clean Figma design system directly helped us increase our user onboarding conversion by 35%. Highly recommended!",
             card1Author: "Jasur Rahimov",

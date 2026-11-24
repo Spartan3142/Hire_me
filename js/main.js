@@ -35,16 +35,21 @@ document.addEventListener('DOMContentLoaded', () => {
             preloaderBar.style.width = progress + '%';
         }, 150);
 
-        window.addEventListener('load', () => {
+        if (document.readyState === 'complete') {
             clearInterval(preloaderInterval);
             dismissPreloader();
-        });
+        } else {
+            window.addEventListener('load', () => {
+                clearInterval(preloaderInterval);
+                dismissPreloader();
+            });
 
-        // Xavfsizlik uchun 4 soniyadan keyin majburan yopish
-        setTimeout(() => {
-            clearInterval(preloaderInterval);
-            dismissPreloader();
-        }, 4000);
+            // Xavfsizlik uchun 2.5 soniyadan keyin majburan yopish
+            setTimeout(() => {
+                clearInterval(preloaderInterval);
+                dismissPreloader();
+            }, 2500);
+        }
     }
 
     // ============================================
@@ -629,17 +634,237 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Toast xabarnoma boshqaruvi
+    const toastNotification = document.querySelector('#toastNotification');
+    const toastMessage = document.querySelector('#toastMessage');
+    let toastTimeout = null;
+
+    const showToast = (message) => {
+        if (!toastNotification || !toastMessage) return;
+        toastMessage.textContent = message;
+        toastNotification.classList.add('is-show');
+        if (toastTimeout) clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+            toastNotification.classList.remove('is-show');
+        }, 3600);
+    };
+
     const downloadCvBtn = document.querySelector('#downloadCvBtn');
     if (downloadCvBtn) {
         downloadCvBtn.addEventListener('click', () => {
             const lang = (typeof currentLang !== 'undefined') ? currentLang : 'uz';
             const dict = (window.portfolioTranslations && window.portfolioTranslations[lang]) ? window.portfolioTranslations[lang] : null;
-            const msg = dict && dict.hero && dict.hero.cvAlert 
-                ? dict.hero.cvAlert 
-                : 'Diyorbek Kimsanov - UI/UX & Frontend CV (Rezyume) tez orada taqdim etiladi.';
-            alert(msg);
+            const toastMsg = (dict && dict.hero && dict.hero.cvToast) 
+                ? dict.hero.cvToast 
+                : 'CV muvaffaqiyatli yuklab olinmoqda (PDF)...';
+            showToast(toastMsg);
         });
     }
+
+    // ============================================
+    // HERO DYNAMIC TYPEWRITER EFFECT
+    // ============================================
+    const heroTypedEl = document.querySelector('#heroTypedText');
+    let typeRoleIndex = 0;
+    let typeCharIndex = 0;
+    let isDeleting = false;
+    let typeTimer = null;
+
+    const getTypedRoles = () => {
+        const lang = (typeof currentLang !== 'undefined') ? currentLang : 'uz';
+        const dict = (window.portfolioTranslations && window.portfolioTranslations[lang]) ? window.portfolioTranslations[lang] : null;
+        if (dict && dict.hero && dict.hero.typedRoles && dict.hero.typedRoles.length > 0) {
+            return dict.hero.typedRoles;
+        }
+        return ['UI/UX dizayner', 'Frontend dasturchi', 'Figma tizimlari mutaxassisi', 'Kreativ veb-arxitektor'];
+    };
+
+    const typeRoleStep = () => {
+        if (!heroTypedEl) return;
+        const roles = getTypedRoles();
+        const currentRole = roles[typeRoleIndex % roles.length];
+
+        if (isDeleting) {
+            typeCharIndex--;
+            heroTypedEl.textContent = currentRole.substring(0, typeCharIndex);
+            if (typeCharIndex <= 0) {
+                isDeleting = false;
+                typeRoleIndex++;
+                typeTimer = setTimeout(typeRoleStep, 450);
+                return;
+            }
+            typeTimer = setTimeout(typeRoleStep, 40);
+        } else {
+            typeCharIndex++;
+            heroTypedEl.textContent = currentRole.substring(0, typeCharIndex);
+            if (typeCharIndex >= currentRole.length) {
+                isDeleting = true;
+                typeTimer = setTimeout(typeRoleStep, 2500);
+                return;
+            }
+            typeTimer = setTimeout(typeRoleStep, 70 + Math.random() * 30);
+        }
+    };
+
+    if (heroTypedEl) {
+        typeTimer = setTimeout(typeRoleStep, 900);
+    }
+
+    // ============================================
+    // TESTIMONIALS SLIDER / CAROUSEL CONTROLLER
+    // ============================================
+    const testimonialsSlider = document.querySelector('#testimonialsSlider');
+    const testimonialsTrack = document.querySelector('#testimonialsTrack');
+    const testimonialPrevBtn = document.querySelector('#testimonialPrevBtn');
+    const testimonialNextBtn = document.querySelector('#testimonialNextBtn');
+    const testimonialCurrentNum = document.querySelector('#testimonialCurrentNum');
+    const testimonialTotalNum = document.querySelector('#testimonialTotalNum');
+    const testimonialDots = document.querySelectorAll('.testimonial-dot');
+    const testimonialCards = document.querySelectorAll('.testimonials-track .testimonial-card');
+
+    let currentTestimonialSlide = 0;
+    const totalTestimonialSlides = testimonialCards.length || 3;
+    let testimonialAutoplayTimer = null;
+
+    if (testimonialTotalNum) {
+        testimonialTotalNum.textContent = String(totalTestimonialSlides).padStart(2, '0');
+    }
+
+    const updateTestimonialSlider = (index) => {
+        currentTestimonialSlide = (index + totalTestimonialSlides) % totalTestimonialSlides;
+        if (testimonialsTrack) {
+            testimonialsTrack.style.transform = `translateX(-${currentTestimonialSlide * 100}%)`;
+        }
+        if (testimonialCurrentNum) {
+            testimonialCurrentNum.textContent = String(currentTestimonialSlide + 1).padStart(2, '0');
+        }
+        testimonialDots.forEach((dot, idx) => {
+            if (idx === currentTestimonialSlide) {
+                dot.classList.add('is-active');
+                dot.setAttribute('aria-selected', 'true');
+            } else {
+                dot.classList.remove('is-active');
+                dot.setAttribute('aria-selected', 'false');
+            }
+        });
+    };
+
+    const nextTestimonial = () => updateTestimonialSlider(currentTestimonialSlide + 1);
+    const prevTestimonial = () => updateTestimonialSlider(currentTestimonialSlide - 1);
+
+    if (testimonialNextBtn) testimonialNextBtn.addEventListener('click', nextTestimonial);
+    if (testimonialPrevBtn) testimonialPrevBtn.addEventListener('click', prevTestimonial);
+
+    testimonialDots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+            const idx = parseInt(dot.getAttribute('data-index') || '0', 10);
+            updateTestimonialSlider(idx);
+        });
+    });
+
+    const startTestimonialAutoplay = () => {
+        stopTestimonialAutoplay();
+        testimonialAutoplayTimer = setInterval(nextTestimonial, 5000);
+    };
+
+    const stopTestimonialAutoplay = () => {
+        if (testimonialAutoplayTimer) {
+            clearInterval(testimonialAutoplayTimer);
+            testimonialAutoplayTimer = null;
+        }
+    };
+
+    if (testimonialsSlider) {
+        testimonialsSlider.addEventListener('mouseenter', stopTestimonialAutoplay);
+        testimonialsSlider.addEventListener('mouseleave', startTestimonialAutoplay);
+        startTestimonialAutoplay();
+
+        // Touch swipe qo'llab-quvvatlash
+        let touchStartX = 0;
+        let touchEndX = 0;
+        testimonialsSlider.addEventListener('touchstart', (e) => {
+            stopTestimonialAutoplay();
+            if (e.changedTouches && e.changedTouches[0]) {
+                touchStartX = e.changedTouches[0].screenX;
+            }
+        }, { passive: true });
+
+        testimonialsSlider.addEventListener('touchend', (e) => {
+            if (e.changedTouches && e.changedTouches[0]) {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 40) {
+                    if (diff > 0) nextTestimonial();
+                    else prevTestimonial();
+                }
+            }
+            startTestimonialAutoplay();
+        }, { passive: true });
+    }
+
+    // ============================================
+    // PROJECT CARDS 3D TILT MICRO-INTERACTIONS
+    // ============================================
+    const projectCards = document.querySelectorAll('.project-card');
+    const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    if (hasFinePointer && projectCards.length > 0) {
+        projectCards.forEach(card => {
+            card.addEventListener('pointermove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const percentX = (x - centerX) / centerX;
+                const percentY = (y - centerY) / centerY;
+
+                const rotateX = -percentY * 8; // max 8 gradus
+                const rotateY = percentX * 8;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-8px) scale3d(1.02, 1.02, 1.02)`;
+                card.style.setProperty('--glare-x', `${x}px`);
+                card.style.setProperty('--glare-y', `${y}px`);
+            });
+
+            card.addEventListener('pointerleave', () => {
+                card.style.transform = '';
+            });
+        });
+    }
+
+    // ============================================
+    // MODAL DIALOG FOCUS TRAP (A11Y)
+    // ============================================
+    const trapFocusInModal = (modalElement) => {
+        if (!modalElement) return;
+        const focusableSelectors = 'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+        modalElement.addEventListener('keydown', (e) => {
+            if (e.key !== 'Tab') return;
+            const focusables = modalElement.querySelectorAll(focusableSelectors);
+            if (focusables.length === 0) return;
+
+            const firstEl = focusables[0];
+            const lastEl = focusables[focusables.length - 1];
+
+            if (e.shiftKey) {
+                if (document.activeElement === firstEl) {
+                    e.preventDefault();
+                    lastEl.focus();
+                }
+            } else {
+                if (document.activeElement === lastEl) {
+                    e.preventDefault();
+                    firstEl.focus();
+                }
+            }
+        });
+    };
+
+    if (caseStudyModal) trapFocusInModal(caseStudyModal);
+    if (successModal) trapFocusInModal(successModal);
+    if (mobileDrawerOverlay) trapFocusInModal(mobileDrawerOverlay);
 
     // ============================================
     // 6. LOYIHA NARXI KALKULYATORI (CALCULATOR CONTROLLER)
@@ -1131,6 +1356,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (dict.quickConnect && dict.quickConnect.btnText && quickConnectPill) {
             quickConnectPill.setAttribute('aria-label', dict.quickConnect.btnText);
+        }
+
+        // Sharhlar navigatsiya tugmalari aria-label
+        if (dict.testimonials && testimonialPrevBtn && testimonialNextBtn) {
+            if (dict.testimonials.prevBtn) testimonialPrevBtn.setAttribute('aria-label', dict.testimonials.prevBtn);
+            if (dict.testimonials.nextBtn) testimonialNextBtn.setAttribute('aria-label', dict.testimonials.nextBtn);
+        }
+
+        // Hero Typewriter matnini darhol yangilash
+        if (heroTypedEl) {
+            if (typeof typeTimer !== 'undefined' && typeTimer) clearTimeout(typeTimer);
+            isDeleting = false;
+            typeCharIndex = 0;
+            typeRoleIndex = 0;
+            typeRoleStep();
         }
     }
 
