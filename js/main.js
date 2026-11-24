@@ -53,7 +53,152 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ============================================
-    // 0.1 SCROLL-REVEAL (Kirish animatsiyalari)
+    // 0.1 GLOBAL STATE & SOZLAMALAR
+    // ============================================
+    const THEME_STORAGE_KEY = 'portfolio_theme';
+    const LANG_STORAGE_KEY = 'portfolio_lang';
+    let currentLang = localStorage.getItem(LANG_STORAGE_KEY) || 'uz';
+    let activeCaseStudyId = null;
+
+    // ============================================
+    // 0.2 MAVZU (DARK / LIGHT MODE) BOSHQARUVI
+    // ============================================
+    const themeToggleBtn = document.querySelector('#themeToggleBtn');
+    const rootHtml = document.documentElement;
+    const metaThemeColor = document.querySelector('#metaThemeColor');
+
+    const updateThemeMeta = (theme) => {
+        if (metaThemeColor) {
+            metaThemeColor.setAttribute('content', theme === 'light' ? '#f4f5f8' : '#121212');
+        }
+    };
+
+    // Boshlang'ich meta theme-color ni tekshirish
+    updateThemeMeta(rootHtml.getAttribute('data-theme') || 'dark');
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = rootHtml.getAttribute('data-theme') || 'dark';
+            const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            rootHtml.setAttribute('data-theme', nextTheme);
+            localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+            updateThemeMeta(nextTheme);
+        });
+    }
+
+    // ============================================
+    // 0.3 KO'PTILLILIK (LANGUAGE SWITCHER: UZ / EN)
+    // ============================================
+    const langButtons = document.querySelectorAll('.lang-btn');
+
+    function getNestedTranslation(obj, path) {
+        return path.split('.').reduce((prev, curr) => (prev ? prev[curr] : undefined), obj);
+    }
+
+    function applyTranslations(lang) {
+        if (!window.portfolioTranslations || !window.portfolioTranslations[lang]) return;
+        const dict = window.portfolioTranslations[lang];
+        currentLang = lang;
+        document.documentElement.setAttribute('lang', lang);
+
+        // Tugmalardagi aktiv holatni yangilash
+        langButtons.forEach(btn => {
+            if (btn.getAttribute('data-lang') === lang) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        // Sahifa sarlavhasini (Title) yangilash
+        if (dict.meta && dict.meta.title) {
+            document.title = dict.meta.title;
+        }
+
+        // Oddiy matn elementlarini [data-i18n] yangilash
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            const translation = getNestedTranslation(dict, key);
+            if (translation !== undefined) {
+                el.textContent = translation;
+            }
+        });
+
+        // HTML elementlarini [data-i18n-html] yangilash
+        document.querySelectorAll('[data-i18n-html]').forEach(el => {
+            const key = el.getAttribute('data-i18n-html');
+            const translation = getNestedTranslation(dict, key);
+            if (translation !== undefined) {
+                el.innerHTML = translation;
+            }
+        });
+
+        // Placeholder atributlarini [data-i18n-placeholder] yangilash
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            const translation = getNestedTranslation(dict, key);
+            if (translation !== undefined) {
+                el.setAttribute('placeholder', translation);
+            }
+        });
+
+        // Xizmatlar panelini faol karta bo'yicha yangilash
+        const activeCard = document.querySelector('.service-card.is-active') || document.querySelector('.service-card');
+        if (activeCard && typeof updateServiceDetail === 'function') {
+            updateServiceDetail(activeCard);
+        }
+
+        // Agar Case Study modal ochiq bo'lsa, uni ham yangi til bo'yicha darhol yangilash
+        if (activeCaseStudyId && typeof renderCaseStudy === 'function') {
+            renderCaseStudy(activeCaseStudyId);
+        }
+
+        // Kalkulyator hisobini yangi til bo'yicha yangilash
+        if (typeof updateCalculator === 'function') {
+            updateCalculator();
+        }
+
+        // Yuqoriga qaytish va tezkor aloqa tugmalari aria-label
+        const scrollTopBtnEl = document.querySelector('#scrollTopBtn');
+        if (dict.scrollTop && dict.scrollTop.ariaLabel && scrollTopBtnEl) {
+            scrollTopBtnEl.setAttribute('aria-label', dict.scrollTop.ariaLabel);
+        }
+        const quickConnectPillEl = document.querySelector('#quickConnectPill');
+        if (dict.quickConnect && dict.quickConnect.btnText && quickConnectPillEl) {
+            quickConnectPillEl.setAttribute('aria-label', dict.quickConnect.btnText);
+        }
+
+        // Sharhlar navigatsiya tugmalari aria-label
+        const testimonialPrevBtnEl = document.querySelector('#testimonialPrevBtn');
+        const testimonialNextBtnEl = document.querySelector('#testimonialNextBtn');
+        if (dict.testimonials && testimonialPrevBtnEl && testimonialNextBtnEl) {
+            if (dict.testimonials.prevBtn) testimonialPrevBtnEl.setAttribute('aria-label', dict.testimonials.prevBtn);
+            if (dict.testimonials.nextBtn) testimonialNextBtnEl.setAttribute('aria-label', dict.testimonials.nextBtn);
+        }
+
+        // Hero Typewriter matnini darhol yangilash
+        if (typeof updateTypewriterLanguage === 'function') {
+            updateTypewriterLanguage();
+        }
+    }
+
+    // Til tugmalarini bosish hodisasi
+    langButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const selectedLang = btn.getAttribute('data-lang');
+            if (selectedLang && selectedLang !== currentLang) {
+                applyTranslations(selectedLang);
+                localStorage.setItem(LANG_STORAGE_KEY, selectedLang);
+            }
+        });
+    });
+
+    // Boshlang'ich yuklashda saqlangan tilni qo'llash
+    applyTranslations(currentLang);
+
+    // ============================================
+    // 0.4 SCROLL-REVEAL (Kirish animatsiyalari)
     // ============================================
     const revealElements = document.querySelectorAll('.reveal');
 
@@ -506,7 +651,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const caseModalProblem = document.querySelector('#caseModalProblem');
     const caseModalSolution = document.querySelector('#caseModalSolution');
     const caseModalTools = document.querySelector('#caseModalTools');
-    let activeCaseStudyId = null;
+    activeCaseStudyId = null;
 
     function renderCaseStudy(projectId) {
         if (!projectId) return;
@@ -671,7 +816,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let typeTimer = null;
 
     const getTypedRoles = () => {
-        const lang = (typeof currentLang !== 'undefined') ? currentLang : 'uz';
+        const lang = currentLang || 'uz';
         const dict = (window.portfolioTranslations && window.portfolioTranslations[lang]) ? window.portfolioTranslations[lang] : null;
         if (dict && dict.hero && dict.hero.typedRoles && dict.hero.typedRoles.length > 0) {
             return dict.hero.typedRoles;
@@ -705,6 +850,16 @@ document.addEventListener('DOMContentLoaded', () => {
             typeTimer = setTimeout(typeRoleStep, 70 + Math.random() * 30);
         }
     };
+
+    function updateTypewriterLanguage() {
+        if (heroTypedEl) {
+            if (typeTimer) clearTimeout(typeTimer);
+            isDeleting = false;
+            typeCharIndex = 0;
+            typeRoleIndex = 0;
+            typeRoleStep();
+        }
+    }
 
     if (heroTypedEl) {
         typeTimer = setTimeout(typeRoleStep, 900);
@@ -762,16 +917,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const startTestimonialAutoplay = () => {
-        stopTestimonialAutoplay();
-        testimonialAutoplayTimer = setInterval(nextTestimonial, 5000);
-    };
-
     const stopTestimonialAutoplay = () => {
         if (testimonialAutoplayTimer) {
             clearInterval(testimonialAutoplayTimer);
             testimonialAutoplayTimer = null;
         }
+    };
+
+    const startTestimonialAutoplay = () => {
+        stopTestimonialAutoplay();
+        testimonialAutoplayTimer = setInterval(nextTestimonial, 5000);
     };
 
     if (testimonialsSlider) {
@@ -862,7 +1017,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     if (caseStudyModal) trapFocusInModal(caseStudyModal);
-    if (successModal) trapFocusInModal(successModal);
     if (mobileDrawerOverlay) trapFocusInModal(mobileDrawerOverlay);
 
     // ============================================
@@ -1084,6 +1238,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalSenderName = document.querySelector('#modalSenderName');
     const modalSenderEmail = document.querySelector('#modalSenderEmail');
 
+    if (successModal) trapFocusInModal(successModal);
+
     // Modalni ochish funksiyasi
     const openModal = (name, email) => {
         if (modalSenderName) modalSenderName.textContent = name || "Do'stim";
@@ -1246,144 +1402,4 @@ document.addEventListener('DOMContentLoaded', () => {
             closeQuickConnect();
         }
     });
-
-    // ============================================
-    // 7. MAVZU (DARK / LIGHT MODE) BOSHQARUVI
-    // ============================================
-    const themeToggleBtn = document.querySelector('#themeToggleBtn');
-    const rootHtml = document.documentElement;
-    const THEME_STORAGE_KEY = 'portfolio_theme';
-    const metaThemeColor = document.querySelector('#metaThemeColor');
-
-    const updateThemeMeta = (theme) => {
-        if (metaThemeColor) {
-            metaThemeColor.setAttribute('content', theme === 'light' ? '#f4f5f8' : '#121212');
-        }
-    };
-
-    // Boshlang'ich meta theme-color ni tekshirish
-    updateThemeMeta(rootHtml.getAttribute('data-theme') || 'dark');
-
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = rootHtml.getAttribute('data-theme') || 'dark';
-            const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
-
-            rootHtml.setAttribute('data-theme', nextTheme);
-            localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
-            updateThemeMeta(nextTheme);
-        });
-    }
-
-    // ============================================
-    // 8. KO'PTILLILIK (LANGUAGE SWITCHER: UZ / EN)
-    // ============================================
-    const langButtons = document.querySelectorAll('.lang-btn');
-    const LANG_STORAGE_KEY = 'portfolio_lang';
-    let currentLang = localStorage.getItem(LANG_STORAGE_KEY) || 'uz';
-
-    function getNestedTranslation(obj, path) {
-        return path.split('.').reduce((prev, curr) => (prev ? prev[curr] : undefined), obj);
-    }
-
-    function applyTranslations(lang) {
-        if (!window.portfolioTranslations || !window.portfolioTranslations[lang]) return;
-        const dict = window.portfolioTranslations[lang];
-        currentLang = lang;
-        document.documentElement.setAttribute('lang', lang);
-
-        // Tugmalardagi aktiv holatni yangilash
-        langButtons.forEach(btn => {
-            if (btn.getAttribute('data-lang') === lang) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
-
-        // Sahifa sarlavhasini (Title) yangilash
-        if (dict.meta && dict.meta.title) {
-            document.title = dict.meta.title;
-        }
-
-        // Oddiy matn elementlarini [data-i18n] yangilash
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            const translation = getNestedTranslation(dict, key);
-            if (translation !== undefined) {
-                el.textContent = translation;
-            }
-        });
-
-        // HTML elementlarini [data-i18n-html] yangilash
-        document.querySelectorAll('[data-i18n-html]').forEach(el => {
-            const key = el.getAttribute('data-i18n-html');
-            const translation = getNestedTranslation(dict, key);
-            if (translation !== undefined) {
-                el.innerHTML = translation;
-            }
-        });
-
-        // Placeholder atributlarini [data-i18n-placeholder] yangilash
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-            const key = el.getAttribute('data-i18n-placeholder');
-            const translation = getNestedTranslation(dict, key);
-            if (translation !== undefined) {
-                el.setAttribute('placeholder', translation);
-            }
-        });
-
-        // Xizmatlar panelini faol karta bo'yicha yangilash
-        const activeCard = document.querySelector('.service-card.is-active') || document.querySelector('.service-card');
-        if (activeCard && typeof updateServiceDetail === 'function') {
-            updateServiceDetail(activeCard);
-        }
-
-        // Agar Case Study modal ochiq bo'lsa, uni ham yangi til bo'yicha darhol yangilash
-        if (activeCaseStudyId && typeof renderCaseStudy === 'function') {
-            renderCaseStudy(activeCaseStudyId);
-        }
-
-        // Kalkulyator hisobini yangi til bo'yicha yangilash
-        if (typeof updateCalculator === 'function') {
-            updateCalculator();
-        }
-
-        // Yuqoriga qaytish va tezkor aloqa tugmalari aria-label
-        if (dict.scrollTop && dict.scrollTop.ariaLabel && scrollTopBtn) {
-            scrollTopBtn.setAttribute('aria-label', dict.scrollTop.ariaLabel);
-        }
-        if (dict.quickConnect && dict.quickConnect.btnText && quickConnectPill) {
-            quickConnectPill.setAttribute('aria-label', dict.quickConnect.btnText);
-        }
-
-        // Sharhlar navigatsiya tugmalari aria-label
-        if (dict.testimonials && testimonialPrevBtn && testimonialNextBtn) {
-            if (dict.testimonials.prevBtn) testimonialPrevBtn.setAttribute('aria-label', dict.testimonials.prevBtn);
-            if (dict.testimonials.nextBtn) testimonialNextBtn.setAttribute('aria-label', dict.testimonials.nextBtn);
-        }
-
-        // Hero Typewriter matnini darhol yangilash
-        if (heroTypedEl) {
-            if (typeof typeTimer !== 'undefined' && typeTimer) clearTimeout(typeTimer);
-            isDeleting = false;
-            typeCharIndex = 0;
-            typeRoleIndex = 0;
-            typeRoleStep();
-        }
-    }
-
-    // Til tugmalarini bosish hodisasi
-    langButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const selectedLang = btn.getAttribute('data-lang');
-            if (selectedLang && selectedLang !== currentLang) {
-                applyTranslations(selectedLang);
-                localStorage.setItem(LANG_STORAGE_KEY, selectedLang);
-            }
-        });
-    });
-
-    // Boshlang'ich yuklashda saqlangan tilni qo'llash
-    applyTranslations(currentLang);
 });
