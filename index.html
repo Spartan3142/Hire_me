@@ -57,6 +57,16 @@
             </div>
         </div>
     </div>
+    <!-- Preloader xavfsizlik himoyasi (Fallback timer) -->
+    <script>
+        setTimeout(function() {
+            var pl = document.getElementById('preloader');
+            if (pl && !pl.classList.contains('is-hidden')) {
+                pl.classList.add('is-hidden');
+                document.body.style.overflow = '';
+            }
+        }, 1200);
+    </script>
 
     <!-- Asosiy ilova romi (Dizayndagi qora karta) -->
     <main class="app-frame">

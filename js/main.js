@@ -805,10 +805,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     // PROJECT CARDS 3D TILT MICRO-INTERACTIONS
     // ============================================
-    const projectCards = document.querySelectorAll('.project-card');
     const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-    if (hasFinePointer && projectCards.length > 0) {
+    if (hasFinePointer && projectCards && projectCards.length > 0) {
         projectCards.forEach(card => {
             card.addEventListener('pointermove', (e) => {
                 const rect = card.getBoundingClientRect();
